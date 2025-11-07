@@ -9,7 +9,7 @@ if($_SESSION['username']){
 
 } else {
 
-    header("Location: ./view/login.php");
+    header("Location: ./view/principal.php");
     exit();
 
 }
