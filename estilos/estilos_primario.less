@@ -21,6 +21,7 @@
     @black: #000000;
     @gray: #EEEEEE;
     @gray-hover: #f6f6f6;
+    @red: red;
 
 
 ////////////// Fuentes (font-family)
@@ -74,9 +75,9 @@
 
     h1{font-size: @fs-large-extra;}
     h2{font-size: @fs-large;}
-    h3{font-size: calc(@fs-large - 2px);} // A la variable le resta 2
-    h4{font-size: calc(@fs-large - 4px);} // A la variable le resta 4
-    h5{font-size: calc(@fs-large - 6px);} // A la variable le resta 6
+    h3{font-size: calc(@fs-large - 4px);} // A la variable le resta 2
+    h4{font-size: calc(@fs-large - 6px);} // A la variable le resta 4
+    h5{font-size: calc(@fs-large - 8px);} // A la variable le resta 6
 
 
     // --> Aplicamos font-size predeterminado para el resto de etiquetas.
@@ -84,6 +85,9 @@
         font-size: @fs-medium;
     }
 
+    .error{
+        color: @red;
+    }
 
 
 //////////////

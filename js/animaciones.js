@@ -13,12 +13,11 @@ function iniciarSesion(){
 
     // alert("dentro");
 
-    inputLogin.style.opacity = "0";
-
     var content = document.getElementById("content");
     var content2 = document.getElementById("left-2");
 
     content.classList.add("opacityMove");
     content2.classList.add("opacityMoveReverse");
+    inputLogin.classList.add("opacityMoveReverse");
 
 }
