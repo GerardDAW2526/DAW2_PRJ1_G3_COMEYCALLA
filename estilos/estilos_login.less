@@ -26,12 +26,17 @@
     z-index: 2;
     // display: flex;
 
+    @media(max-width: 768px){
+        display: none;
+    }
+
     .btn-login{
         display: flex;
         max-height: 50px;
         overflow: hidden;
         justify-content: end;
         gap: 10px;
+        
 
         .svg-content{
             width: 4%;
@@ -62,6 +67,7 @@
                 color: @black;
                 background-color: @white;
                 transition: all 0.2s;
+                // transform: scale(1.1);
             }
 
         }
@@ -77,11 +83,19 @@
     grid-template-columns: repeat(2, minmax(0, 1fr));
     opacity: 0;
     transition: all 1s;
+    // position: relative;
+
+    @media(max-width: 768px){
+        grid-template-columns: repeat(1, minmax(0, 1fr));
+        opacity: 1;
+        align-content: unset;
+    }
 
     .left{
         // grid-column: span 2;
         transition: all 0.2s;
         align-content: center;
+        padding: 10px 0px;
 
         img{
             width: 30%;
@@ -111,11 +125,23 @@
 
             text-align: start;
             justify-items: anchor-center;
+            padding: 60px;
 
             h1{
                 margin: 0;
-                padding-bottom: 80px;
+                margin-bottom: 80px;
                 font-size: calc(@fs-large-extra + 1vw);
+                position: relative;
+
+                &:before{
+                    position: absolute;
+                    content: "";
+                    bottom: -10px;
+                    left: 0;
+                    width: 50px;
+                    height: 4px;
+                    background-color: @black;
+                }
             }
 
             >div{
@@ -159,6 +185,11 @@
                         cursor: pointer;
                         border: 2px solid @black;
                         transition: all 0.2s;
+                        transform: scale(1.1);
+                    }
+
+                    &:active{
+                        transform: scale(0.9);
                     }
                 }
             }
@@ -178,6 +209,10 @@
     height: 100vh;
     text-align: center;
     opacity: 1;
+
+    @media(max-width: 768px){
+        display: none;
+    }
 
     img{
         width: 20%;
