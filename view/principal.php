@@ -51,7 +51,7 @@
 
             <div class="right" id="right">
 
-                <form action="" method="POST" class="formulario">
+                <form action="../proc/login.proc.php" method="POST" class="formulario">
 
                     <h1>Iniciar sesión</h1>
 

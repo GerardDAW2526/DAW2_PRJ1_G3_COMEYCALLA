@@ -2,8 +2,8 @@
 // proc/liberar_mesa.php
 
 header('Content-Type: application/json');
-require_once __DIR__ . '/../includes/sesion.php';    // Verifica sesión activa
-require_once __DIR__ . '/../includes/funciones.php'; // Funciones reutilizables
+require_once '../includes/sesion.php';    // Verifica sesión activa
+require_once '../includes/funciones.php'; // Funciones reutilizables
 
 // Verificar que se haya recibido el ID de la mesa
 if (!isset($_POST['id_mesa']) || empty($_POST['id_mesa'])) {
