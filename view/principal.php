@@ -66,7 +66,7 @@
 
                     <div>
                         <label for="contra">Contraseña</label> <br>
-                        <input type="text" name="contra" id="contra" class="contra" placeholder="Introduzca la contraseña...">
+                        <input type="password" name="contra" id="contra" class="contra" placeholder="Introduzca la contraseña...">
 
                         <!-- Contraseña incorrecta -->
                         <p class="error" id="errorContra"><?php if(isset($_GET['error']) && $_GET['error'] == 2){echo "Contraseña incorrecta.";} ?></p>

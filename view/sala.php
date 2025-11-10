@@ -10,7 +10,28 @@
     <div class="header"></div>
 
 
-    <div class="content"></div>
+    <div class="content">
+        <form action="" method="POST">
+
+            <div class="section-1"> <!-- Esto sería un grid -->
+
+                <!-- Idea de, hacer un foreach, y por cada item que encuentre lo añade a la fila. -->
+
+                <?php
+
+                    
+
+
+                ?>
+
+            </div>
+
+            <div class="section-2"></div>
+            
+            <div class="section-3"></div>
+
+        </form>
+    </div>
 
 
     <div class="footer"></div>

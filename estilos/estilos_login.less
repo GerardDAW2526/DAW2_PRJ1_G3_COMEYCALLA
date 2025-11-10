@@ -22,30 +22,36 @@
     // align-items: center;
     align-content: center;
     padding: 15px;
-    position: relative;
-    z-index: 2;
-    // display: flex;
+    position: relative;     // --> Para aplicar el z-index y que todo absolute esté situado dentro de él sin dar problemas.
+    z-index: 2;             // --> El z-index va por capas, 1, 2, 3, 4... Son capas que le puedes aplicar a un elemento para que se sobreponga encima de otros.
 
+
+    // --> Media de tablet, hacemos que ya entre directamente a la sección de iniciar sesión sin el paso intermedio de clicar en el botón.
     @media(max-width: 768px){
         display: none;
     }
 
+
+    // --> El botón del login
     .btn-login{
-        display: flex;
+        display: flex;          // --> Despliegue de elementos en horizontal
         max-height: 50px;
-        overflow: hidden;
+        overflow: hidden;       // --> Oculta toda información y elemento que se encuentre situado fuera de él.
         justify-content: end;
-        gap: 10px;
+        gap: 10px;              // --> Distancia entre elementos
         
 
+        // --> Contenedor del SVG
         .svg-content{
             width: 4%;
             background-color: @black;
-            height: auto;
-            fill: @white;
+            fill: @white;               // --> Color del svg, los hilos
             border-radius: 50%;
         }
 
+
+
+        // --> Contenedor del botón Iniciar sesión
         .texto{
             border: 2px solid @black;
             padding: 10px 15px;
@@ -59,10 +65,12 @@
             align-content: center;
             text-align: center;
             text-decoration: none;
-            cursor: pointer;
+            cursor: pointer;            // --> El cursor, al estar encima de este elemento, accionará como si estuviese encima de un elemento clicable
 
 
 
+            // --> Esto es lo mismo que si ponemos .texto:hover, solo que podemos aplicarlo directamente mediante el &(.texto):hover.
+            // --> Se encarga de si pasas el ratón por encima hace x acciones.
             &:hover{
                 color: @black;
                 background-color: @white;
@@ -75,20 +83,24 @@
 
 }
 
+
+
+
+// --> Contenedor general
 .content{
     align-content: center;
     text-align: center;
     height: 80vh;
-    display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
+    display: grid;                                      // --> Diseño de columnas
+    grid-template-columns: repeat(2, minmax(0, 1fr));   // --> Creamos una plantilla de columnas, mediante un repeat() (que se encarga de repetir), aplicamos el número de columnas a repetir, en nuestro caso queremos añadir dos columnas, pues aplicamos 2. Seguidamente, aplicamos un minmax() que determina el mínimo y máximo, queremos que de mínimo ocupe 0 y de máximo el máximo espacio que pueda ocupar (1fr) -> 1frame. Aplicamos el minmax por temas de seguridad, para garantizar un correcto funcionamiento de él.
     opacity: 0;
     transition: all 1s;
     // position: relative;
 
     @media(max-width: 768px){
-        grid-template-columns: repeat(1, minmax(0, 1fr));
+        grid-template-columns: repeat(1, minmax(0, 1fr));   // --> En este caso, como la pantalla es más pequeña, no caben las dos columnas, para ello hacemos que solo se repita una vez -> una sola columna.
         opacity: 1;
-        align-content: unset;
+        align-content: unset;                               // --> Desactivamos el align-content porque daba problemas
     }
 
     .left{
@@ -133,6 +145,12 @@
                 font-size: calc(@fs-large-extra + 1vw);
                 position: relative;
 
+
+                // --> El :before es un pseudoelemento el cual podemos añadir contenido sin crear un elemento de 0, por ejemplo, en este caso solamente queremos crear una línea debajo del título, así que para no tener que crear un elemento y relacionarlo con una clase, le añadimos un pseudoelemento.
+                // --> Este se caracteriza por:
+                //          content: "";                    --> Contenido
+                //          top, bottom, left, rigth: ;     --> Posición
+                //          position: absolute;             --> Importante este parámetro porque o sino no se ve, es el tipo de posición del elemento
                 &:before{
                     position: absolute;
                     content: "";
@@ -168,6 +186,8 @@
 
             }
 
+
+            // --> Contenedor del botón de enviar
             >.content-enviar{
                 text-align: center;
                 justify-items: center;
@@ -198,6 +218,9 @@
 
 }
 
+
+
+// --> El contenedor fijado en la primera pantalla
 .left-2{
     // grid-column: span 2;
     transition: all 0.2s;
