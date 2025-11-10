@@ -1,7 +1,7 @@
 <?php 
  $servername = "localhost:3306"; // Nombre del servidor 
  $dbusername = "root"; // Nombre de usuario 
- $dbpassword = ""; // Contraseña 
+ $dbpassword = "qazQAZ123"; // Contraseña 
  $dbname = "db_comeycalla"; // Nombre de la base de datos 
 
 
