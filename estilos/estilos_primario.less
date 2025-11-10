@@ -1,4 +1,8 @@
 
+// CREAMOS VARIABLES PARA LA AGILIZACIÓN DE MODIFICACIÓN DE ESTILOS 
+// si queremos cambiar un color, lo cambiamos en la variable y será mucho más fácil y rápido.
+
+
 
 //////////////////////////////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////////////////
@@ -7,30 +11,81 @@
 //////////////////////////////////////////////////////////////////////////////////////////
 
 
-// --> Imports (contenido importado de otro documento o web)
-
-
-// --> Colores
-
-
-// --> Fuentes
-
-
-// --> Tamaños de texto
-
-
-// --> Config predeterminada de la page
+////////////// Imports (contenido importado de otro documento o web)
 
 
 
-//////////////////////////////////////////////////////////////////////////////////////////
-//////////////////////////////////////////////////////////////////////////////////////////
-//                                         PARTE WEB                                    //
-//////////////////////////////////////////////////////////////////////////////////////////
-//////////////////////////////////////////////////////////////////////////////////////////
+////////////// Colores
+
+    @white: #ffffff;
+    @black: #000000;
+    @gray: #EEEEEE;
+    @gray-hover: #f6f6f6;
+
+
+////////////// Fuentes (font-family)
 
 
 
+////////////// Tamaños de texto
 
+    // El parámetro clamp(), lo que hace es calcular entre un mínimo y un máximo de píxeles el font-size (mejor aplicación a la hora de hacer responsive);
+
+    // clamp(mínimo en píxeles, cálculo de cambio (va bajando o subiendo dependiendo del ancho de la pantalla), máximo en píxeles);
+    
+    // clamp(12px, 1vw, 16px);
+
+    // Los vw es una unidad que representa al ancho del viewport (la pantalla), 1vw = 12px.
+    // Es una unidad que se ajusta automáticamente, pero le aplicamos un mínimo y un máximo para tener más control de él.
+
+    @fs-small: clamp(12px, 1.5vw, 16px);
+    @fs-medium: clamp(16px, 2vw, 21px);
+    @fs-large: clamp(18px, 4vw, 28px);
+    @fs-large-extra: clamp(32px, 5vw, 41px);
+
+
+
+////////////// Config predeterminada de la page
+
+    body{
+
+        // --> Utilizamos estos parámetros para que el body no tenga espacios.
+
+        padding: 0;
+        margin: 0;
+
+        // --> Este parámetro controla el ancho y alto del elemento.
+        // Suma todos los píxeles reunidos y los junta, por ejemplo:
+        // 
+        // width: 20px;
+        // border: 2px solid black;
+        // padding: 12px;
+        // 
+        // --> Lo que hará es, mediante los 20 píxeles que tiene de ancho, que quepan los demás datos.
+        // --> 20: 12 + 2.
+        // 
+        // --> El total sería 20 de ancho y, en esos 20, 14 son de un borde y de un padding. 
+        box-sizing: border-box;
+    }
+
+
+    // --> Configuración de los headers, le aplicamos un font-size predeterminado con sus respectivas variables
+    // --> También, le implementamos un calc(), este calcula entre los parámetros que lleve dentro.
+
+    h1{font-size: @fs-large-extra;}
+    h2{font-size: @fs-large;}
+    h3{font-size: calc(@fs-large - 2px);} // A la variable le resta 2
+    h4{font-size: calc(@fs-large - 4px);} // A la variable le resta 4
+    h5{font-size: calc(@fs-large - 6px);} // A la variable le resta 6
+
+
+    // --> Aplicamos font-size predeterminado para el resto de etiquetas.
+    p, a, span, button{
+        font-size: @fs-medium;
+    }
+
+
+
+//////////////
 
 
