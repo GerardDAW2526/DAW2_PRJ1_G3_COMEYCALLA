@@ -1,0 +1,234 @@
+/* =====================
+   ESTRUCTURA GENERAL
+   ===================== */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background: #f5f5f5;
+    color: #333;
+}
+
+h1, h2 {
+    text-align: center;
+}
+
+.main-title {
+    text-align: center;
+    margin-top: 30px;
+    color: #222;
+}
+
+/* =====================
+   HEADER GENERAL
+   ===================== */
+.header-flex {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #222;
+    color: white;
+    padding: 10px 20px;
+}
+
+.header-left form,
+.header-right form {
+    display: inline-block;
+    margin-left: 5px;
+    margin-right: 5px;
+}
+
+/* =====================
+   BOTONES
+   ===================== */
+.btn-volver,
+.btn-buscar,
+.btn-cerrar-sesion,
+.btn-primario,
+.btn-secundario {
+    background-color: #3498db;
+    color: white;
+    border: none;
+    padding: 8px 12px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: 0.3s;
+    text-decoration: none;
+}
+
+.btn-cerrar-sesion {
+    background-color: #e74c3c;
+}
+
+.btn-secundario {
+    background-color: #777;
+}
+
+.btn-volver:hover,
+.btn-buscar:hover,
+.btn-cerrar-sesion:hover,
+.btn-primario:hover,
+.btn-secundario:hover {
+    opacity: 0.8;
+}
+
+/* =====================
+   CONTENEDOR DE MESAS
+   ===================== */
+.mesas-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 15px;
+    margin: 40px auto;
+    max-width: 900px;
+}
+
+.mesa-btn {
+    width: 150px;
+    height: 100px;
+    font-size: 15px;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    color: white;
+    transition: 0.3s;
+}
+
+.mesa-btn.libre {
+    background-color: #2ecc71;
+}
+
+.mesa-btn.ocupada {
+    background-color: #e74c3c;
+}
+
+.mesa-btn:hover {
+    opacity: 0.9;
+}
+
+/* =====================
+   FORMULARIO DE FILTROS
+   ===================== */
+.filtros-form {
+    background-color: white;
+    padding: 20px;
+    border-radius: 10px;
+    margin: 30px auto;
+    max-width: 1000px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.filtros-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 15px 30px;
+}
+
+.filtro-col label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+.filtro-col input {
+    width: 100%;
+    padding: 6px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.filtros-botonera {
+    text-align: center;
+    margin-top: 20px;
+}
+
+/* =====================
+   TABLA HISTORIAL
+   ===================== */
+.tabla-historial {
+    width: 95%;
+    margin: 20px auto 50px;
+    border-collapse: collapse;
+    background: white;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.tabla-historial th,
+.tabla-historial td {
+    border: 1px solid #ddd;
+    padding: 10px;
+    text-align: center;
+}
+
+.tabla-historial th {
+    background-color: #3498db;
+    color: white;
+}
+
+.sin-resultados {
+    text-align: center;
+    color: #777;
+    font-style: italic;
+    padding: 20px;
+}
+
+/* Estado de ocupación */
+.ocupada {
+    color: #e74c3c;
+    font-weight: bold;
+}
+
+/* =====================
+   LOGIN / REGISTRO
+   ===================== */
+.login-container,
+.register-container {
+    background: white;
+    max-width: 400px;
+    margin: 60px auto;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+.login-container input,
+.register-container input {
+    width: 100%;
+    padding: 10px;
+    margin: 8px 0;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.login-container button,
+.register-container button {
+    width: 100%;
+    padding: 10px;
+    background-color: #3498db;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.login-container button:hover,
+.register-container button:hover {
+    opacity: 0.9;
+}
+
+/* =====================
+   OTROS
+   ===================== */
+a {
+    color: #3498db;
+}
+
+a:hover {
+    text-decoration: underline;
+}

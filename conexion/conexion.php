@@ -1,21 +1,13 @@
-<?php 
- $servername = "localhost:3306"; // Nombre del servidor 
- $dbusername = "root"; // Nombre de usuario 
- $dbpassword = ""; // Contraseña 
- $dbname = "db_comeycalla"; // Nombre de la base de datos 
+<?php
+$servername = "localhost";
+$dbname = "db_comeycalla";
+$dbusername = "root";
+$dbpassword = "";
 
-
- try { 
-     // Se crea una instancia de la clase PDO para establecer la conexión 
-     $conn = new PDO("mysql:host=$servername;dbname=$dbname", $dbusername, $dbpassword); 
-  
-     // Se establece el modo de errores de PDO para lanzar excepciones en lugar de advertencias 
-     $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION); 
-      
- } catch (PDOException $e) { 
-
-    // Se captura la excepción y mostrar el mensaje de error 
-    echo "Error en la conexión a la base de datos: " . $e->getMessage(); 
-    die(); 
-
- } 
+try {
+    $conn = new PDO("mysql:host=$servername;dbname=$dbname;charset=utf8", $dbusername, $dbpassword);
+    $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+} catch(PDOException $e) {
+    die("Error de conexión: " . $e->getMessage());
+}
+?>

@@ -25,14 +25,13 @@ CREATE TABLE IF NOT EXISTS tbl_salas (
     capacidad_total INT NOT NULL
 );
 
--- Tabla de mesas
+-- Tabla de mesas (sin descripción y con tipo_mesa obligatorio)
 CREATE TABLE IF NOT EXISTS tbl_mesas (
     id_mesa INT AUTO_INCREMENT PRIMARY KEY,
     id_sala INT NOT NULL,
     num_sillas INT NOT NULL,
     estado ENUM('libre','ocupada') DEFAULT 'libre',
-    tipo_mesa ENUM('cuadrada','rectangular','redonda','especial') NOT NULL,
-    descripcion VARCHAR(255)
+    tipo_mesa ENUM('cuadrada','rectangular','redonda','especial') NOT NULL
 );
 
 -- Tabla de ocupaciones (histórico)
@@ -48,17 +47,14 @@ CREATE TABLE IF NOT EXISTS tbl_ocupaciones (
 -- RELACIONES (FOREIGN KEYS)
 -- ======================================================
 
--- Relación entre mesas y salas
 ALTER TABLE tbl_mesas
     ADD CONSTRAINT fk_mesas_salas
     FOREIGN KEY (id_sala) REFERENCES tbl_salas(id_sala);
 
--- Relación entre ocupaciones y mesas
 ALTER TABLE tbl_ocupaciones
     ADD CONSTRAINT fk_ocupaciones_mesas
     FOREIGN KEY (id_mesa) REFERENCES tbl_mesas(id_mesa);
 
--- Relación entre ocupaciones y usuarios (camareros)
 ALTER TABLE tbl_ocupaciones
     ADD CONSTRAINT fk_ocupaciones_usuarios
     FOREIGN KEY (id_usuario) REFERENCES tbl_usuarios(id_usuario);
@@ -67,11 +63,11 @@ ALTER TABLE tbl_ocupaciones
 -- DATOS DE EJEMPLO
 -- ======================================================
 
--- Usuarios (camareros) con contraseñas encriptadas (bcrypt del texto '123456')
+-- Usuarios (contraseña: 123456 hasheada con bcrypt)
 INSERT INTO tbl_usuarios (username, nombre_completo, password) VALUES
-('jgomez', 'Juan Gómez', '$2y$10$Qq5BRiZCqjTZfgA4P74w5OYvwbUgqAw5pWNoVdD4K5ZxMGFj9Lfzi'),
-('mlopez', 'María López', '$2y$10$Qq5BRiZCqjTZfgA4P74w5OYvwbUgqAw5pWNoVdD4K5ZxMGFj9Lfzi'),
-('rcano', 'Raúl Cano', '$2y$10$Qq5BRiZCqjTZfgA4P74w5OYvwbUgqAw5pWNoVdD4K5ZxMGFj9Lfzi');
+('jgomez', 'Juan Gómez', '$2y$10$e0NRfhvC7K4nksZ/J0uX1.N8ruT/gh4R1n3Rx1k7hCvDDXngwhlIe'),
+('mlopez', 'María López', '$2y$10$e0NRfhvC7K4nksZ/J0uX1.N8ruT/gh4R1n3Rx1k7hCvDDXngwhlIe'),
+('rcano', 'Raúl Cano', '$2y$10$e0NRfhvC7K4nksZ/J0uX1.N8ruT/gh4R1n3Rx1k7hCvDDXngwhlIe');
 
 -- Salas
 INSERT INTO tbl_salas (nombre_sala, tipo, capacidad_total) VALUES
@@ -86,21 +82,21 @@ INSERT INTO tbl_salas (nombre_sala, tipo, capacidad_total) VALUES
 ('Sala Privada 4', 'privada', 12);
 
 -- Mesas (2 por sala con tipo_mesa añadido)
-INSERT INTO tbl_mesas (id_sala, num_sillas, estado, tipo_mesa, descripcion) VALUES
-(1, 4, 'libre', 'cuadrada', 'Mesa junto a la entrada'),
-(1, 4, 'ocupada', 'redonda', 'Mesa en la esquina'),
-(2, 2, 'libre', 'rectangular', 'Mesa con sombra'),
-(2, 4, 'libre', 'redonda', 'Mesa con vistas'),
-(3, 4, 'libre', 'cuadrada', 'Mesa central'),
-(3, 2, 'ocupada', 'especial', 'Mesa lateral'),
-(4, 6, 'ocupada', 'rectangular', 'Mesa familiar'),
-(4, 4, 'libre', 'cuadrada', 'Mesa de dos parejas'),
-(5, 4, 'libre', 'redonda', 'Mesa interior'),
-(5, 4, 'ocupada', 'rectangular', 'Mesa cercana a cocina'),
-(6, 8, 'libre', 'especial', 'Privada para grupos'),
-(7, 10, 'libre', 'cuadrada', 'Privada con terraza'),
-(8, 6, 'ocupada', 'redonda', 'Pequeña sala privada'),
-(9, 12, 'libre', 'rectangular', 'Gran sala privada');
+INSERT INTO tbl_mesas (id_sala, num_sillas, estado, tipo_mesa) VALUES
+(1, 4, 'libre', 'cuadrada'),
+(1, 4, 'ocupada', 'redonda'),
+(2, 2, 'libre', 'rectangular'),
+(2, 4, 'libre', 'redonda'),
+(3, 4, 'libre', 'cuadrada'),
+(3, 2, 'ocupada', 'especial'),
+(4, 6, 'ocupada', 'rectangular'),
+(4, 4, 'libre', 'cuadrada'),
+(5, 4, 'libre', 'redonda'),
+(5, 4, 'ocupada', 'rectangular'),
+(6, 8, 'libre', 'especial'),
+(7, 10, 'libre', 'cuadrada'),
+(8, 6, 'ocupada', 'redonda'),
+(9, 12, 'libre', 'rectangular');
 
 -- Ocupaciones de ejemplo
 INSERT INTO tbl_ocupaciones (id_mesa, id_usuario, fecha_ocupacion, fecha_liberacion) VALUES
