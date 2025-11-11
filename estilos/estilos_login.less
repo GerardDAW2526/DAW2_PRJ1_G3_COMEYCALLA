@@ -24,6 +24,7 @@
     padding: 15px;
     position: relative;     // --> Para aplicar el z-index y que todo absolute esté situado dentro de él sin dar problemas.
     z-index: 2;             // --> El z-index va por capas, 1, 2, 3, 4... Son capas que le puedes aplicar a un elemento para que se sobreponga encima de otros.
+    background-color: @primary-color;
 
 
     // --> Media de tablet, hacemos que ya entre directamente a la sección de iniciar sesión sin el paso intermedio de clicar en el botón.
@@ -90,6 +91,7 @@
 .content{
     align-content: center;
     text-align: center;
+    background-color: @primary-color;
     height: 80vh;
     display: grid;                                      // --> Diseño de columnas
     grid-template-columns: repeat(2, minmax(0, 1fr));   // --> Creamos una plantilla de columnas, mediante un repeat() (que se encarga de repetir), aplicamos el número de columnas a repetir, en nuestro caso queremos añadir dos columnas, pues aplicamos 2. Seguidamente, aplicamos un minmax() que determina el mínimo y máximo, queremos que de mínimo ocupe 0 y de máximo el máximo espacio que pueda ocupar (1fr) -> 1frame. Aplicamos el minmax por temas de seguridad, para garantizar un correcto funcionamiento de él.

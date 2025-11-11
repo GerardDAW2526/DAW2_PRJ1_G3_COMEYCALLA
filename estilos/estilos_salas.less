@@ -12,4 +12,171 @@
 //////////////////////////////////////////////////////////////////////////////////////////
 
 
+.header{
+    height: 15vh;
+    // position: fixed;
+    background-color: @secundary-color;
+    position: relative;
+    // z-index: 2;
+    // top: 0;
+    // left: 0;
+    // width: 100%;
+    padding: 10px 20px;
 
+    img{
+        width: auto;
+        height: 100%;
+        // object-fit: cover;
+        // padding: 10px;
+        // border: 1px solid @black;
+        border-radius: 50px;
+        transition: all 0.2s;
+
+        &:hover{
+            transform: scale(1.1);
+            transition: all 0.2s;
+        }
+
+        &:active{
+            transform: scale(0.9);
+        }
+    }
+}
+
+
+
+.content{
+
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 20px;
+    height: 85vh;
+    position: relative;
+    background-color: @primary-color;
+
+    .left{
+        grid-column: span 2;
+        // border: 2px solid @black;
+        align-content: center;
+
+        .section-1{
+            // border: 2px solid @black;
+            display: grid;
+            grid-template-columns: repeat(4, minmax(0, 1fr));
+
+            .mesa{
+                padding: 20px;
+                text-align: center;
+
+                &:hover{
+                    img{
+                        transform: scale(1.1);
+                        transition: all 0.2s;
+                    }
+                }
+
+                img{
+                    transition: all 0.2s;
+                }
+                
+                >form{
+                    position: relative;
+                }
+
+                .btn-mesa{
+                    position: absolute;
+                    top: 0;
+                    left: 0;
+                    background-color: transparent;
+                    cursor: pointer;
+                    width: 100%;
+                    height: 100%;
+                    padding: 30px;
+
+                }
+            }
+        }
+
+        .section-2{
+            display: grid;
+            grid-template-columns: repeat(7, minmax(0, 1fr));
+            padding-top: 40px;
+
+            .mesa{
+                padding: 20px;
+                text-align: center;
+
+                &:hover{
+                    img{
+                        transform: scale(1.1);
+                        transition: all 0.2s;
+                    }
+                }
+
+                img{
+                    transition: all 0.2s;
+                }
+                
+                >form{
+                    position: relative;
+                }
+
+                .btn-mesa{
+                    position: absolute;
+                    top: 0;
+                    left: 0;
+                    background-color: transparent;
+                    cursor: pointer;
+                    width: 100%;
+                    height: 100%;
+                    padding: 30px;
+
+                }
+            }
+        }
+
+    }
+
+    .section-3{
+        // border: 2px solid @black;
+        text-align: center;
+        align-content: center;
+        // padding: 60px 20px;
+
+        img:hover{
+            transform: scale(1.1);
+            transition: all 0.2s;
+        }
+
+        img{
+            transition: all 0.2s;
+        }
+
+        .btn-mesa{
+            position: absolute;
+            top: 0;
+            left: 0;
+            background-color: transparent;
+            cursor: pointer;
+            width: 100%;
+            height: 100%;
+            padding: 30px;
+
+        }
+        
+        form{
+            position: relative;
+            text-align: center;
+            padding: 60px 20px;
+
+            &:hover{
+                img{
+                    transform: scale(1.1);
+                    transition: all 0.2s;
+                }
+            }
+        }
+
+    }
+
+}
