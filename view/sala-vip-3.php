@@ -11,6 +11,7 @@ if(!(isset($_SESSION['nombre_completo']))){
 }
 
 
+
 ?>
 
 <!DOCTYPE html>
@@ -18,7 +19,7 @@ if(!(isset($_SESSION['nombre_completo']))){
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sala 1</title> <!-- En la BBDD tendría el id 1 -->
+    <title>Sala Terraza 3</title> <!-- En la BBDD tendría el id 5 -->
 
     <!-- BOOTSTRAP -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -35,157 +36,67 @@ if(!(isset($_SESSION['nombre_completo']))){
     <div class="header">
         <!-- Imagen -->
         <img src="../media/Logo.png" alt="No se ha podido cargar la imagen">
+
+        <!-- Título de la sala -->
+        <h1>Sala Vip 3</h1>
     </div>
 
 
     <div class="content">
 
-            <div class="left">
-
-                <div class="section-1"> <!-- Esto sería un grid -->
-
-                    <!-- Idea de, hacer un foreach, y por cada item que encuentre lo añade a la fila. -->
-
-                    <?php
-
-                        include_once "../conexion/conexion.php";
-
-                        try {
-
-                            $sql = "SELECT * FROM tbl_mesas WHERE id_sala = 1 AND tipo_mesa = 'rectangular'";
-                            $stmt = $conn->query($sql);
-                            $resultados = $stmt->fetchAll(PDO::FETCH_ASSOC);
-
-                            $i = 1;
-
-                            // var_dump($resultados);
-
-                            foreach($resultados as $mesa){
-
-                                // echo $mesa['id_mesa'];
-
-                                echo '<div class="mesa">';
-                                echo '<form action="../index.php" method="POST">';
-                                echo '<input type="hidden" id="id" class="id" name="id" value="' . $mesa['id_mesa'] . '">';
-                                echo '<img src="../media/'. $mesa['tipo_mesa'] . '_' . $mesa['estado'] . '.png" alt="No se ha podido cargar la imagen" class="mesa-svg">';
-                                echo '<a class="btn-mesa" id="btn-mesa"></a>';
-                                echo '</form>';
-                                echo '</div>';
-                                // echo $mesa['estado'];
-
-                                $i++;
-
-                                if($i > 8){
-                                    break;
-                                }
-
-                            }
-
-                        } catch (PDOException $e) {
-                            echo "Error: " . $e->getMessage();
-                        }
-
-
-
-                    ?>
-
-                </div>
-
-                <div class="section-2">
-                    <!-- <p>hola</p> -->
-
-                    <?php
-
-                        include_once "../conexion/conexion.php";
-
-                        try {
-
-                            $sql2 = "SELECT * FROM tbl_mesas WHERE id_sala = 1 AND tipo_mesa = 'cuadrada'";
-                            $stmt2 = $conn->query($sql2);
-                            $resultados2 = $stmt2->fetchAll(PDO::FETCH_ASSOC);
-
-                            $i = 1;
-
-                            // var_dump($resultados);
-
-                            foreach($resultados2 as $mesa){
-
-                                // echo $mesa['id_mesa'];
-
-                                echo '<div class="mesa">';
-                                echo '<form action="../index.php" method="POST">';
-                                echo '<input type="hidden" id="id" class="id" name="id" value="' . $mesa['id_mesa'] . '">';
-                                echo '<img src="../media/'. $mesa['tipo_mesa'] . '_' . $mesa['estado'] . '.png" alt="No se ha podido cargar la imagen" class="mesa-svg">';
-                                echo '<a class="btn-mesa" id="btn-mesa"></a>';
-                                echo '</form>';
-                                echo '</div>';
-                                // echo $mesa['estado'];
-
-                                $i++;
-
-                                if($i > 7){
-                                    break;
-                                }
-
-                            }
-
-                        } catch (PDOException $e) {
-                            echo "Error: " . $e->getMessage();
-                        }
-
-
-
-                    ?>
-                </div>
-
-            </div>
             
-            <div class="section-3">
+        <div class="section-3 vip">
 
-                <?php
+            <?php
 
-                    include_once "../conexion/conexion.php";
+                include_once "../conexion/conexion.php";
 
-                    try {
+                try {
 
-                        $sql3 = "SELECT * FROM tbl_mesas WHERE id_sala = 1 AND tipo_mesa = 'redonda'";
-                        $stmt3 = $conn->query($sql3);
-                        $resultados3 = $stmt3->fetchAll(PDO::FETCH_ASSOC);
+                    $sql3 = "SELECT * FROM tbl_mesas WHERE id_sala = 5 AND tipo_mesa = 'especial'";
+                    $stmt3 = $conn->query($sql3);
+                    $resultados3 = $stmt3->fetchAll(PDO::FETCH_ASSOC);
 
-                        $i = 1;
+                    $i = 1;
 
-                        // var_dump($resultados);
+                    // var_dump($resultados);
 
-                        foreach($resultados3 as $mesa){
+                    foreach($resultados3 as $mesa){
 
-                            // echo $mesa['id_mesa'];
+                        // echo $mesa['id_mesa'];
 
-                            echo '<div class="mesa">';
-                            echo '<form action="../index.php" method="POST">';
-                            echo '<input type="hidden" id="id" class="id" name="id" value="' . $mesa['id_mesa'] . '">';
-                            echo '<img src="../media/'. $mesa['tipo_mesa'] . '_' . $mesa['estado'] . '.png" alt="No se ha podido cargar la imagen" class="mesa-svg">';
-                            echo '<a class="btn-mesa" id="btn-mesa"></a>';
-                            echo '</form>';
-                            echo '</div>';
-                            // echo $mesa['estado'];
+                        echo '<div class="mesa">';
+                        echo '<form action="../index.php" method="POST">';
+                        echo '<input type="hidden" id="id" class="id" name="id" value="' . $mesa['id_mesa'] . '">';
+                        echo '<img src="../media/'. $mesa['tipo_mesa'] . '_' . $mesa['estado'] . '.png" alt="No se ha podido cargar la imagen" class="mesa-svg">';
 
-                            $i++;
-
-                            if($i > 2){
-                                break;
-                            }
-
+                        if($mesa['estado'] == "ocupada"){
+                            echo '<a class="btn-mesa libre" id="' . $mesa['id_mesa'] . '" name="' . $mesa['id_sala'] . '">' . $mesa['id_mesa'] . '</a>';
+                        } else if($mesa['estado'] == "libre"){
+                            echo '<a class="btn-mesa ocupada" id="' . $mesa['id_mesa'] . '" name="' . $mesa['id_sala'] . '">' . $mesa['id_mesa'] . '</a>';
                         }
 
-                    } catch (PDOException $e) {
-                        echo "Error: " . $e->getMessage();
+                        echo '</form>';
+                        echo '</div>';
+                        // echo $mesa['estado'];
+
+                        $i++;
+
+                        if($i > 2){
+                            break;
+                        }
+
                     }
 
+                } catch (PDOException $e) {
+                    echo "Error: " . $e->getMessage();
+                }
 
 
-                    ?>
 
-            </div>
+                ?>
+
+        </div>
 
     </div>
 
@@ -208,6 +119,19 @@ if(!(isset($_SESSION['nombre_completo']))){
     <!-- SCRIPT -->
     <script src="../js/sweetalerts.js"></script>
 
+                
+    <?php
+        // if(isset($_GET['completado'])){
+
+        //     echo "<script>alert('Se ha liberado correctamente')</script>";
+
+        // }
+        // if(isset($_GET['completado2'])){
+
+        //     echo "<script>alert('Se ha ocupado correctamente')</script>";
+
+        // }
+    ?>
 
 </body>
 </html>

@@ -36,6 +36,10 @@ if(!(isset($_SESSION['nombre_completo']))){
     <div class="header">
         <!-- Imagen -->
         <img src="../media/Logo.png" alt="No se ha podido cargar la imagen">
+
+        <!-- Título de la sala -->
+        <h1>Sala 1</h1>
+
     </div>
 
 
@@ -69,7 +73,13 @@ if(!(isset($_SESSION['nombre_completo']))){
                                 echo '<form action="../index.php" method="POST">';
                                 echo '<input type="hidden" id="id" class="id" name="id" value="' . $mesa['id_mesa'] . '">';
                                 echo '<img src="../media/'. $mesa['tipo_mesa'] . '_' . $mesa['estado'] . '.png" alt="No se ha podido cargar la imagen" class="mesa-svg">';
-                                echo '<a class="btn-mesa" id="' . $mesa['id_mesa'] . '" name="' . $mesa['id_sala'] . '"></a>';
+
+                                if($mesa['estado'] == "ocupada"){
+                                    echo '<a class="btn-mesa libre" id="' . $mesa['id_mesa'] . '" name="' . $mesa['id_sala'] . '">' . $mesa['id_mesa'] . '</a>';
+                                } else if($mesa['estado'] == "libre"){
+                                    echo '<a class="btn-mesa ocupada" id="' . $mesa['id_mesa'] . '" name="' . $mesa['id_sala'] . '">' . $mesa['id_mesa'] . '</a>';
+                                }
+
                                 echo '</form>';
                                 echo '</div>';
                                 // echo $mesa['estado'];
@@ -117,7 +127,13 @@ if(!(isset($_SESSION['nombre_completo']))){
                                 echo '<form action="../index.php" method="POST">';
                                 echo '<input type="hidden" id="id" class="id" name="id" value="' . $mesa['id_mesa'] . '">';
                                 echo '<img src="../media/'. $mesa['tipo_mesa'] . '_' . $mesa['estado'] . '.png" alt="No se ha podido cargar la imagen" class="mesa-svg">';
-                                echo '<a class="btn-mesa" id="' . $mesa['id_mesa'] . '" name="' . $mesa['id_sala'] . '"></a>';
+
+                                if($mesa['estado'] == "ocupada"){
+                                    echo '<a class="btn-mesa libre" id="' . $mesa['id_mesa'] . '" name="' . $mesa['id_sala'] . '">' . $mesa['id_mesa'] . '</a>';
+                                } else if($mesa['estado'] == "libre"){
+                                    echo '<a class="btn-mesa ocupada" id="' . $mesa['id_mesa'] . '" name="' . $mesa['id_sala'] . '">' . $mesa['id_mesa'] . '</a>';
+                                }
+
                                 echo '</form>';
                                 echo '</div>';
                                 // echo $mesa['estado'];
@@ -165,7 +181,13 @@ if(!(isset($_SESSION['nombre_completo']))){
                             echo '<form action="../index.php" method="POST">';
                             echo '<input type="hidden" id="id" class="id" name="id" value="' . $mesa['id_mesa'] . '">';
                             echo '<img src="../media/'. $mesa['tipo_mesa'] . '_' . $mesa['estado'] . '.png" alt="No se ha podido cargar la imagen" class="mesa-svg">';
-                            echo '<a class="btn-mesa" id="' . $mesa['id_mesa'] . '" name="' . $mesa['id_sala'] . '"></a>';
+
+                            if($mesa['estado'] == "ocupada"){
+                                echo '<a class="btn-mesa libre" id="' . $mesa['id_mesa'] . '" name="' . $mesa['id_sala'] . '">' . $mesa['id_mesa'] . '</a>';
+                            } else if($mesa['estado'] == "libre"){
+                                echo '<a class="btn-mesa ocupada" id="' . $mesa['id_mesa'] . '" name="' . $mesa['id_sala'] . '">' . $mesa['id_mesa'] . '</a>';
+                            }
+
                             echo '</form>';
                             echo '</div>';
                             // echo $mesa['estado'];
@@ -211,16 +233,16 @@ if(!(isset($_SESSION['nombre_completo']))){
 
                 
     <?php
-        if(isset($_GET['completado'])){
+        // if(isset($_GET['completado'])){
 
-            echo "<script>alert('Se ha liberado correctamente')</script>";
+        //     echo "<script>alert('Se ha liberado correctamente')</script>";
 
-        }
-        if(isset($_GET['completado2'])){
+        // }
+        // if(isset($_GET['completado2'])){
 
-            echo "<script>alert('Se ha ocupado correctamente')</script>";
+        //     echo "<script>alert('Se ha ocupado correctamente')</script>";
 
-        }
+        // }
     ?>
 
 </body>

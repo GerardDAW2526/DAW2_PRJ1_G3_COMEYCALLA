@@ -26,28 +26,28 @@ try {
 
     $conn->commit();
 
-    if($id_sala = 1){
+    if($id_sala == 1){
         header("Location: ../view/sala.php?completado2");
         exit();
-    } else if($id_sala = 2){
+    } else if($id_sala == 2){
         header("Location: ../view/sala-2.php?completado2");
         exit();
-    } else if($id_sala = 3){
+    } else if($id_sala == 3){
         header("Location: ../view/sala-vip-1.php?completado2");
         exit();
-    } else if($id_sala = 4){
+    } else if($id_sala == 4){
         header("Location: ../view/sala-vip-2.php?completado2");
         exit();
-    } else if($id_sala = 5){
+    } else if($id_sala == 5){
         header("Location: ../view/sala-vip-3.php?completado2");
         exit();
-    } else if($id_sala = 6){
+    } else if($id_sala == 6){
         header("Location: ../view/sala-terraza-1.php?completado2");
         exit();
-    } else if($id_sala = 7){
+    } else if($id_sala == 7){
         header("Location: ../view/sala-terraza-2.php?completado2");
         exit();
-    } else if($id_sala = 8){
+    } else if($id_sala == 8){
         header("Location: ../view/sala-terraza-3.php?completado2");
         exit();
     } else {

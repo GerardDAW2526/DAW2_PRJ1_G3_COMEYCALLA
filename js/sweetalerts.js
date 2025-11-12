@@ -1,10 +1,16 @@
 // alert("hola");
 
 
-var mesa = document.querySelectorAll(".btn-mesa");
+var libre = document.querySelectorAll(".libre");
+var ocupada = document.querySelectorAll(".ocupada");
 
-mesa.forEach(element => {
-  element.onclick = mesaVal;
+libre.forEach(element => {
+  element.onclick = libreVal;
+  // console.log(element);
+});
+
+ocupada.forEach(element => {
+  element.onclick = ocupadaVal;
   // console.log(element);
 });
 
@@ -14,7 +20,7 @@ mesa.forEach(element => {
 // console.log(mesa);
 
 
-function mesaVal(element){
+function libreVal(element){
 
   // console.log(element);
 
@@ -27,12 +33,12 @@ function mesaVal(element){
   });
 
   swalWithBootstrapButtons.fire({
-    title: "Are you sure?",
-    text: "You won't be able to revert this!",
+    title: "¿Quieres liberar la mesa?",
+    text: "No puedes volver atrás.",
     icon: "warning",
     showCancelButton: true,
-    confirmButtonText: "Desocupar",
-    cancelButtonText: "Ocupar",
+    confirmButtonText: "Liberar",
+    cancelButtonText: "Cancelar",
     reverseButtons: true
   }).then((result) => {
     if (result.isConfirmed) {
@@ -49,12 +55,56 @@ function mesaVal(element){
       result.dismiss === Swal.DismissReason.cancel
     ) {
       swalWithBootstrapButtons.fire({
-        title: "Ocupado",
-        text: "La mesa está ocupada.",
+        title: "Cancelado",
+        text: "Proceso cancelado.",
         icon: "error"
       });
 
-      window.location.href="../proc/ocupar_mesa.proc.php?id_mesa=" + element.target.id + "&id_sala=" + element.target.name;
+    }
+  });
+
+}
+
+function ocupadaVal(element){
+
+  // console.log(element);
+
+  const swalWithBootstrapButtons = Swal.mixin({
+    customClass: {
+      confirmButton: "btn btn-success",
+      cancelButton: "btn btn-danger"
+    },
+    buttonsStyling: true
+  });
+
+  swalWithBootstrapButtons.fire({
+    title: "¿Quieres ocupar la mesa?",
+    text: "No puedes volver atrás.",
+    icon: "warning",
+    showCancelButton: true,
+    confirmButtonText: "Ocupar",
+    cancelButtonText: "Cancelar",
+    reverseButtons: true
+  }).then((result) => {
+    if (result.isConfirmed) {
+      swalWithBootstrapButtons.fire({
+        title: "Libre",
+        text: "La mesa está libre.",
+        icon: "success",
+      });
+
+      window.location.href="../proc/ocupar_mesa.proc.php?id_mesa=" + element.target.id + "&&id_sala=" + element.target.name;
+      // console.log(element.target.name);
+
+    } else if (
+      /* Read more about handling dismissals below */
+      result.dismiss === Swal.DismissReason.cancel
+    ) {
+      swalWithBootstrapButtons.fire({
+        title: "Cancelado",
+        text: "Proceso cancelado.",
+        icon: "error"
+      });
 
     }
   });

@@ -4,7 +4,7 @@ session_start();
 
 if($_SESSION['username']){
     
-    header("Location: ./view/home.php");
+    header("Location: ./view/sala.php");
     exit();
 
 } else {
