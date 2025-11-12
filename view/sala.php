@@ -5,10 +5,20 @@ if(!isset($_SESSION['id_usuario'])){
     exit;
 }
 require_once './../conexion/conexion.php';
+
 if(!isset($_GET['id_sala'])){
     die("No se ha especificado la sala");
 }
 $id_sala = (int)$_GET['id_sala'];
+
+// Obtener información de la sala (nombre y tipo)
+$stmt_sala = $conn->prepare("SELECT nombre_sala FROM tbl_salas WHERE id_sala=:id_sala");
+$stmt_sala->bindParam(':id_sala', $id_sala, PDO::PARAM_INT);
+$stmt_sala->execute();
+$sala_info = $stmt_sala->fetch(PDO::FETCH_ASSOC);
+if(!$sala_info){
+    die("Sala no encontrada");
+}
 
 // Obtener mesas de la sala
 $stmt = $conn->prepare("SELECT id_mesa,num_sillas,estado,tipo_mesa FROM tbl_mesas WHERE id_sala=:id_sala ORDER BY id_mesa");
@@ -26,7 +36,7 @@ $usuario = $stmt2->fetch(PDO::FETCH_ASSOC);
 <html lang="es">
 <head>
 <meta charset="UTF-8">
-<title>Sala <?= $id_sala ?></title>
+<title>Gestión de Mesas - <?= htmlspecialchars($sala_info['nombre_sala']) ?></title>
 <link rel="stylesheet" href="./../css/style.css">
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
@@ -38,12 +48,13 @@ $usuario = $stmt2->fetch(PDO::FETCH_ASSOC);
         </form>
     </div>
 
-    <h1>Gestión de Mesas - Sala <?= $id_sala ?></h1>
+    <h1>Gestión de Mesas - <?= htmlspecialchars($sala_info['nombre_sala']) ?></h1>
 
     <div class="header-right">
         <form action="historial.php" method="get">
             <button type="submit" class="btn-buscar">&#128269;</button>
         </form>
+        <span class="user-name"><?= htmlspecialchars($usuario['nombre_completo']) ?></span>
         <form action="../logout.php" method="post">
             <button type="submit" class="btn-cerrar-sesion">Cerrar Sesión</button>
         </form>

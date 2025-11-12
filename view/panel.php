@@ -25,12 +25,19 @@ $usuario = $stmt2->fetch(PDO::FETCH_ASSOC);
 </head>
 <body>
 <header class="header-flex">
-    <h1>Bienvenido, <?= htmlspecialchars($usuario['nombre_completo']) ?></h1>
+    <div class="header-left">
+        <form action="panel.php" method="get">
+            <button type="button" class="btn-volver">&#8592; Volver</button>
+        </form>
+    </div>
+
+    <h1>Bienvenido al Panel</h1>
 
     <div class="header-right">
         <form action="historial.php" method="get">
             <button type="submit" class="btn-buscar">&#128269;</button>
         </form>
+        <span class="user-name"><?= htmlspecialchars($usuario['nombre_completo']) ?></span>
         <form action="../logout.php" method="post">
             <button type="submit" class="btn-cerrar-sesion">Cerrar Sesión</button>
         </form>
