@@ -92,11 +92,12 @@
     align-content: center;
     text-align: center;
     background-color: @primary-color;
-    height: 80vh;
+    height: 85vh;
     display: grid;                                      // --> Diseño de columnas
     grid-template-columns: repeat(2, minmax(0, 1fr));   // --> Creamos una plantilla de columnas, mediante un repeat() (que se encarga de repetir), aplicamos el número de columnas a repetir, en nuestro caso queremos añadir dos columnas, pues aplicamos 2. Seguidamente, aplicamos un minmax() que determina el mínimo y máximo, queremos que de mínimo ocupe 0 y de máximo el máximo espacio que pueda ocupar (1fr) -> 1frame. Aplicamos el minmax por temas de seguridad, para garantizar un correcto funcionamiento de él.
     opacity: 0;
     transition: all 1s;
+    // overflow: hidden;
     // position: relative;
 
     @media(max-width: 768px){
@@ -234,6 +235,7 @@
     height: 100vh;
     text-align: center;
     opacity: 1;
+    background-color: @primary-color;
 
     @media(max-width: 768px){
         display: none;

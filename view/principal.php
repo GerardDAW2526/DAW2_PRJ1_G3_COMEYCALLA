@@ -1,3 +1,46 @@
+<?php
+
+session_start();
+require_once '../conexion/conexion.php';
+
+$error = "";
+
+// ========================
+// Procesamiento del login
+// ========================
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+
+    // if(!(isset($_POST['nombre']))){
+
+    //     $error = "No puedes dejar el campo usuario vacío.";
+
+    // } else if(!(isset($_POST['contra']))){
+
+    //     $error = "No puedes dejar el campo contraseña vacío.";
+
+    // }
+
+    $username = trim($_POST['nombre']);
+    $password = trim($_POST['contra']);
+
+    // Consulta del usuario en la base de datos
+    $stmt = $conn->prepare("SELECT * FROM tbl_usuarios WHERE username = :u");
+    $stmt->bindParam(':u', $username);
+    $stmt->execute();
+    $user = $stmt->fetch(PDO::FETCH_ASSOC);
+
+    // Verificación de contraseña
+    if ($user && password_verify($password, $user['password'])) {
+        $_SESSION['id_usuario'] = $user['id_usuario'];
+        $_SESSION['nombre_completo'] = $user['nombre_completo'];
+        header("Location: ./sala.php");
+        exit;
+    } else {
+        $error = "Usuario o contraseña incorrectos";
+    }
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -32,12 +75,12 @@
             <div class="left" id="left">
 
                 <!-- Imagen -->
-                <img src="../media/perfil.png" alt="No se ha podido cargar la imagen">
+                <img src="../media/Logo.png" alt="No se ha podido cargar la imagen">
 
 
 
                 <!-- Texto -->
-                <h1>Come y Calla</h1>
+                <!-- <h1>Come y Calla</h1> -->
                 <h3>Nuestras excusas vienen con guarnición.</h3>
 
 
@@ -59,7 +102,7 @@
                         <input type="text" name="nombre" id="nombre" class="nombre" placeholder="Introduzca el nombre del usuario...">
 
                         <!-- Usuario incorrecto -->
-                        <p class="error" id="errorUser"><?php if(isset($_GET['error']) && $_GET['error'] == 1){echo "Usuario incorrecto.";} ?></p>
+                        <p class="error" id="errorUser"><?php if(isset($_GET['error']) && $_GET['error'] == 1){echo "Usuario incorrecto.";} echo $error; ?></p>
                     </div>
 
                     <br>
@@ -69,7 +112,7 @@
                         <input type="password" name="contra" id="contra" class="contra" placeholder="Introduzca la contraseña...">
 
                         <!-- Contraseña incorrecta -->
-                        <p class="error" id="errorContra"><?php if(isset($_GET['error']) && $_GET['error'] == 2){echo "Contraseña incorrecta.";} ?></p>
+                        <p class="error" id="errorContra"><?php if(isset($_GET['error']) && $_GET['error'] == 2){echo "Contraseña incorrecta.";} echo $error ?></p>
                     </div>
 
                     <br><br>
@@ -94,12 +137,12 @@
     <div class="left-2" id="left-2">
 
         <!-- Imagen -->
-        <img src="../media/perfil.png" alt="No se ha podido cargar la imagen">
+        <img src="../media/Logo.png" alt="No se ha podido cargar la imagen">
 
 
 
         <!-- Texto -->
-        <h1>Come y Calla</h1>
+        <!-- <h1>Come y Calla</h1> -->
         <h3>Nuestras excusas vienen con guarnición.</h3>
 
 

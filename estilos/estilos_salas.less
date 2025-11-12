@@ -50,7 +50,7 @@
     display: grid;
     grid-template-columns: repeat(3, minmax(0, 1fr));
     gap: 20px;
-    height: 85vh;
+    height: 65vh;
     position: relative;
     background-color: @primary-color;
 
@@ -58,6 +58,7 @@
         grid-column: span 2;
         // border: 2px solid @black;
         align-content: center;
+        height: min-content;
 
         .section-1{
             // border: 2px solid @black;
@@ -65,7 +66,7 @@
             grid-template-columns: repeat(4, minmax(0, 1fr));
 
             .mesa{
-                padding: 20px;
+                padding: 15px;
                 text-align: center;
 
                 &:hover{
@@ -141,6 +142,7 @@
         // border: 2px solid @black;
         text-align: center;
         align-content: center;
+        height: inherit;
         // padding: 60px 20px;
 
         img:hover{
@@ -167,7 +169,7 @@
         form{
             position: relative;
             text-align: center;
-            padding: 60px 20px;
+            padding: 20px 20px;
 
             &:hover{
                 img{
@@ -179,4 +181,12 @@
 
     }
 
+}
+
+
+
+.footer{
+    width: 100%;
+    height: 5vh;
+    background-color: ;
 }
