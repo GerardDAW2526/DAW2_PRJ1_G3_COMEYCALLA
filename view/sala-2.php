@@ -11,7 +11,6 @@ if(!(isset($_SESSION['nombre_completo']))){
 }
 
 
-
 ?>
 
 <!DOCTYPE html>
@@ -69,7 +68,7 @@ if(!(isset($_SESSION['nombre_completo']))){
                                 echo '<form action="../index.php" method="POST">';
                                 echo '<input type="hidden" id="id" class="id" name="id" value="' . $mesa['id_mesa'] . '">';
                                 echo '<img src="../media/'. $mesa['tipo_mesa'] . '_' . $mesa['estado'] . '.png" alt="No se ha podido cargar la imagen" class="mesa-svg">';
-                                echo '<a class="btn-mesa" id="' . $mesa['id_mesa'] . '" name="' . $mesa['id_sala'] . '"></a>';
+                                echo '<a class="btn-mesa" id="btn-mesa"></a>';
                                 echo '</form>';
                                 echo '</div>';
                                 // echo $mesa['estado'];
@@ -117,7 +116,7 @@ if(!(isset($_SESSION['nombre_completo']))){
                                 echo '<form action="../index.php" method="POST">';
                                 echo '<input type="hidden" id="id" class="id" name="id" value="' . $mesa['id_mesa'] . '">';
                                 echo '<img src="../media/'. $mesa['tipo_mesa'] . '_' . $mesa['estado'] . '.png" alt="No se ha podido cargar la imagen" class="mesa-svg">';
-                                echo '<a class="btn-mesa" id="' . $mesa['id_mesa'] . '" name="' . $mesa['id_sala'] . '"></a>';
+                                echo '<a class="btn-mesa" id="btn-mesa"></a>';
                                 echo '</form>';
                                 echo '</div>';
                                 // echo $mesa['estado'];
@@ -165,7 +164,7 @@ if(!(isset($_SESSION['nombre_completo']))){
                             echo '<form action="../index.php" method="POST">';
                             echo '<input type="hidden" id="id" class="id" name="id" value="' . $mesa['id_mesa'] . '">';
                             echo '<img src="../media/'. $mesa['tipo_mesa'] . '_' . $mesa['estado'] . '.png" alt="No se ha podido cargar la imagen" class="mesa-svg">';
-                            echo '<a class="btn-mesa" id="' . $mesa['id_mesa'] . '" name="' . $mesa['id_sala'] . '"></a>';
+                            echo '<a class="btn-mesa" id="btn-mesa"></a>';
                             echo '</form>';
                             echo '</div>';
                             // echo $mesa['estado'];
@@ -209,19 +208,6 @@ if(!(isset($_SESSION['nombre_completo']))){
     <!-- SCRIPT -->
     <script src="../js/sweetalerts.js"></script>
 
-                
-    <?php
-        if(isset($_GET['completado'])){
-
-            echo "<script>alert('Se ha liberado correctamente')</script>";
-
-        }
-        if(isset($_GET['completado2'])){
-
-            echo "<script>alert('Se ha ocupado correctamente')</script>";
-
-        }
-    ?>
 
 </body>
 </html>

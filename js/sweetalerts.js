@@ -5,6 +5,7 @@ var mesa = document.querySelectorAll(".btn-mesa");
 
 mesa.forEach(element => {
   element.onclick = mesaVal;
+  // console.log(element);
 });
 
 // element.classList.add("ocupado");
@@ -41,6 +42,8 @@ function mesaVal(element){
         icon: "success",
       });
 
+      window.location.href="../proc/liberar_mesa.proc.php?id_mesa=" + element.target.id + "&id_sala=" + element.target.name;
+
     } else if (
       /* Read more about handling dismissals below */
       result.dismiss === Swal.DismissReason.cancel
@@ -50,6 +53,8 @@ function mesaVal(element){
         text: "La mesa está ocupada.",
         icon: "error"
       });
+
+      window.location.href="../proc/ocupar_mesa.proc.php?id_mesa=" + element.target.id + "&id_sala=" + element.target.name;
 
     }
   });
