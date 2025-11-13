@@ -44,9 +44,7 @@ if(!(isset($_SESSION['nombre_completo']))){
 
         <div>
 
-            <form action="historial.php" method="get">
-                <button type="submit" class="btn-buscar">&#128269;</button>
-            </form>
+            <a href="./historial.php"><img src="" alt="No se ha podido cargar la imagen"></a>
             <form action="./logout.php" method="post">
                 <button type="submit" class="btn-cerrar-sesion">Cerrar Sesión</button>
             </form>
