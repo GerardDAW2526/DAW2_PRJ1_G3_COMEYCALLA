@@ -19,7 +19,7 @@ if(!(isset($_SESSION['nombre_completo']))){
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sala Terraza 1</title> <!-- En la BBDD tendría el id 6 -->
+    <title>Terraza 1</title> <!-- En la BBDD tendría el id 6 -->
 
     <!-- BOOTSTRAP -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -39,6 +39,17 @@ if(!(isset($_SESSION['nombre_completo']))){
 
         <!-- Título de la sala -->
         <h1>Sala Terraza 1</h1>
+
+        <div>
+
+            <form action="historial.php" method="get">
+                <button type="submit" class="btn-buscar">&#128269;</button>
+            </form>
+            <form action="./logout.php" method="post">
+                <button type="submit" class="btn-cerrar-sesion">Cerrar Sesión</button>
+            </form>
+
+        </div>
     </div>
 
 
@@ -214,8 +225,8 @@ if(!(isset($_SESSION['nombre_completo']))){
 
     <div class="footer">
 
-        <a href="./sala.php">Sala 1</a>
-        <a href="./sala-2.php">Sala 2</a>
+        <a href="./sala.php">Comedor 1</a>
+        <a href="./sala-2.php">Comedor 2</a>
         <a href="./sala-vip-1.php">Sala VIP 1</a>
         <a href="./sala-vip-2.php">Sala VIP 2</a>
         <a href="./sala-vip-3.php">Sala VIP 3</a>
@@ -227,8 +238,38 @@ if(!(isset($_SESSION['nombre_completo']))){
 
 
 
+    <div class="footer-2" id="footer-2">
+
+        <button class="btn-desplegable" id="btn-desplegable"><img src="../media/menu.png" alt=""></button>
+
+        <div class="desplegable" id="desplegable">
+
+            <div>
+                <a href="./sala.php">Comedor 1</a><br><br><br>
+                <a href="./sala-2.php">Comedor 2</a><br><br><br>
+                <a href="./sala-vip-1.php">Sala VIP 1</a><br><br><br>
+                <a href="./sala-vip-2.php">Sala VIP 2</a><br><br><br>
+            </div>
+
+            <div>
+
+                <a href="./sala-vip-3.php">Sala VIP 3</a><br><br><br>
+                <a href="./sala-terraza-1.php">Terraza 1</a><br><br><br>
+                <a href="./sala-terraza-2.php">Terraza 2</a><br><br><br>
+                <a href="./sala-terraza-3.php">Terraza 3</a><br><br><br>
+
+            </div>
+
+
+        </div>
+
+    </div>
+
+
+
     <!-- SCRIPT -->
     <script src="../js/sweetalerts.js"></script>
+    <script src="../js/animaciones.js"></script>
 
                 
     <?php

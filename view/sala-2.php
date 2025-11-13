@@ -38,7 +38,18 @@ if(!(isset($_SESSION['nombre_completo']))){
         <img src="../media/Logo.png" alt="No se ha podido cargar la imagen">
 
         <!-- Título de la sala -->
-        <h1>Sala 2</h1>
+        <h1>Comedor 2</h1>
+
+        <div>
+
+            <form action="historial.php" method="get">
+                <button type="submit" class="btn-buscar">&#128269;</button>
+            </form>
+            <form action="./logout.php" method="post">
+                <button type="submit" class="btn-cerrar-sesion">Cerrar Sesión</button>
+            </form>
+
+        </div>
     </div>
 
 
@@ -214,8 +225,8 @@ if(!(isset($_SESSION['nombre_completo']))){
 
     <div class="footer">
 
-        <a href="./sala.php">Sala 1</a>
-        <a href="./sala-2.php">Sala 2</a>
+        <a href="./sala.php">Comedor 1</a>
+        <a href="./sala-2.php">Comedor 2</a>
         <a href="./sala-vip-1.php">Sala VIP 1</a>
         <a href="./sala-vip-2.php">Sala VIP 2</a>
         <a href="./sala-vip-3.php">Sala VIP 3</a>
@@ -226,9 +237,38 @@ if(!(isset($_SESSION['nombre_completo']))){
     </div>
 
 
+    <div class="footer-2" id="footer-2">
+
+        <button class="btn-desplegable" id="btn-desplegable"><img src="../media/menu.png" alt=""></button>
+
+        <div class="desplegable" id="desplegable">
+
+            <div>
+                <a href="./sala.php">Comedor 1</a><br><br><br>
+                <a href="./sala-2.php">Comedor 2</a><br><br><br>
+                <a href="./sala-vip-1.php">Sala VIP 1</a><br><br><br>
+                <a href="./sala-vip-2.php">Sala VIP 2</a><br><br><br>
+            </div>
+
+            <div>
+
+                <a href="./sala-vip-3.php">Sala VIP 3</a><br><br><br>
+                <a href="./sala-terraza-1.php">Terraza 1</a><br><br><br>
+                <a href="./sala-terraza-2.php">Terraza 2</a><br><br><br>
+                <a href="./sala-terraza-3.php">Terraza 3</a><br><br><br>
+
+            </div>
+
+
+        </div>
+
+    </div>
+
+
 
     <!-- SCRIPT -->
     <script src="../js/sweetalerts.js"></script>
+    <script src="../js/animaciones.js"></script>
 
                 
     <?php
