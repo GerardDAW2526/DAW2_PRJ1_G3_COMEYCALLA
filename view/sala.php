@@ -42,11 +42,9 @@ $usuario = $stmt2->fetch(PDO::FETCH_ASSOC);
 </head>
 <body>
 <header class="header-flex">
-    <div class="header-left">
-        <form action="panel.php" method="get">
-            <button type="submit" class="btn-volver">&#8592; Volver</button>
-        </form>
-    </div>
+    <form action="panel.php" method="get" style="position:absolute; top:10px; right:10px;">
+        <button type="submit" class="btn-volver">&#8592; Volver</button>
+    </form>
 
     <h1>Gestión de Mesas - <?= htmlspecialchars($sala_info['nombre_sala']) ?></h1>
 

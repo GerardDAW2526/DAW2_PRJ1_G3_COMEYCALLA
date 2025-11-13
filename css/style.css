@@ -16,102 +16,89 @@ header, footer {
 }
 
 /* =========================
-   Header con botones y título centrado
+   Header general
    ========================= */
 .header-flex {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 10px 20px;
     position: relative;
-}
-
-/* Botón volver a la izquierda */
-.header-left {
     display: flex;
-    justify-content: flex-start;
-    flex: 1;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
 }
 
-/* Botones y nombre usuario a la derecha */
 .header-right {
+    position: absolute;
+    top: 10px;
+    right: 10px;
     display: flex;
     align-items: center;
     gap: 10px;
 }
 
-/* Título centrado */
-.header-flex h1 {
-    position: absolute;
-    left: 50%;
-    transform: translateX(-50%);
-    margin: 0;
-    font-size: 24px;
+.header-right span,
+.header-right form {
+    display: inline-block;
+}
+
+#nombre-usuario,
+.user-name {
+    font-weight: bold;
+    color: white;
 }
 
 /* =========================
-   Botón volver
+   Botones del header
    ========================= */
+.btn-buscar,
+.btn-cerrar-sesion,
 .btn-volver {
-    display: inline-block;
-    margin: 0;
     padding: 8px 12px;
-    background-color: #2ecc71;
-    color: white;
-    text-decoration: none;
-    border-radius: 5px;
-    cursor: pointer;
-}
-
-.btn-volver:hover {
-    background-color: #27ae60;
-}
-
-/* =========================
-   Botón buscar (lupa)
-   ========================= */
-.btn-buscar {
-    display: inline-block;
-    padding: 8px 12px;
-    background-color: #3498db;
-    color: white;
     border: none;
     border-radius: 5px;
     cursor: pointer;
-    font-size: 16px;
+    font-size: 14px;
+    color: white;
+}
+
+.btn-buscar {
+    background-color: #3498db;
 }
 
 .btn-buscar:hover {
     background-color: #2980b9;
 }
 
-/* =========================
-   Botón cerrar sesión
-   ========================= */
 .btn-cerrar-sesion {
-    display: inline-block;
-    padding: 8px 12px;
     background-color: #e74c3c;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
 }
 
 .btn-cerrar-sesion:hover {
     background-color: #c0392b;
 }
 
-/* =========================
-   Nombre del usuario logueado
-   ========================= */
-.user-name {
-    font-weight: bold;
-    color: #fff;
+.btn-volver {
+    background-color: #555;
+}
+
+.btn-volver:hover {
+    background-color: #444;
 }
 
 /* =========================
-   Mesas (panel/sala)
+   Titulares principales
+   ========================= */
+h1, h2 {
+    margin: 10px 0;
+}
+
+.main-title {
+    text-align: center;
+    color: #333;
+    margin-top: 20px;
+}
+
+/* =========================
+   Mesas (panel y sala)
    ========================= */
 .mesas-container {
     display: flex;
@@ -146,7 +133,7 @@ header, footer {
 }
 
 /* =========================
-   Formularios filtros historial
+   Formularios filtros (historial)
    ========================= */
 .form-filtros {
     display: grid;
@@ -191,6 +178,19 @@ header, footer {
 }
 
 /* =========================
+   Botones de búsqueda / borrar filtros
+   ========================= */
+.filtro-botones {
+    grid-column: 1 / -1;
+    display: flex;
+    gap: 10px;
+}
+
+.filtro-botones button {
+    flex: 1;
+}
+
+/* =========================
    Tabla historial
    ========================= */
 .tabla-historial {
@@ -220,7 +220,7 @@ header, footer {
 }
 
 /* =========================
-   Ajuste responsive
+   Responsividad
    ========================= */
 @media screen and (max-width: 900px) {
     .form-filtros {
@@ -231,5 +231,10 @@ header, footer {
 @media screen and (max-width: 600px) {
     .form-filtros {
         grid-template-columns: 1fr;
+    }
+
+    .header-right {
+        flex-direction: column;
+        align-items: flex-end;
     }
 }

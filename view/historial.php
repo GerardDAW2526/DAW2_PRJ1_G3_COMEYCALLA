@@ -19,21 +19,19 @@ $params = [];
 if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET['buscar'])) {
 
     // Fecha desde y hasta
-    if (!empty($_GET['fecha_desde']) && !empty($_GET['fecha_hasta'])) {
+    if (!empty($_GET['fecha_desde'])) {
+        $fecha_fin = !empty($_GET['fecha_hasta']) ? $_GET['fecha_hasta'] : $_GET['fecha_desde'];
         $filtros[] = "fecha_ocupacion BETWEEN :fecha_desde AND :fecha_hasta";
         $params[':fecha_desde'] = $_GET['fecha_desde'] . " 00:00:00";
-        $params[':fecha_hasta'] = $_GET['fecha_hasta'] . " 23:59:59";
+        $params[':fecha_hasta'] = $fecha_fin . " 23:59:59";
     }
 
-    // Hora desde y hasta (solo si hay fecha seleccionada)
-    if (!empty($_GET['hora_desde']) && !empty($_GET['hora_hasta'])) {
-        if (empty($_GET['fecha_desde']) || empty($_GET['fecha_hasta'])) {
-            echo "<script>alert('Debes seleccionar un rango de fechas para filtrar por horas');</script>";
-        } else {
-            $filtros[] = "TIME(fecha_ocupacion) BETWEEN :hora_desde AND :hora_hasta";
-            $params[':hora_desde'] = $_GET['hora_desde'];
-            $params[':hora_hasta'] = $_GET['hora_hasta'];
-        }
+    // Hora desde y hasta
+    if (!empty($_GET['hora_desde'])) {
+        $hora_fin = !empty($_GET['hora_hasta']) ? $_GET['hora_hasta'] : "23:59:59";
+        $filtros[] = "TIME(fecha_ocupacion) BETWEEN :hora_desde AND :hora_hasta";
+        $params[':hora_desde'] = $_GET['hora_desde'];
+        $params[':hora_hasta'] = $hora_fin;
     }
 
     // Camarero
@@ -91,20 +89,20 @@ $ocupaciones = $stmt->fetchAll(PDO::FETCH_ASSOC);
     <meta charset="UTF-8">
     <title>Historial de Ocupaciones</title>
     <link rel="stylesheet" href="./../css/style.css">
+    <script src="./../js/validaciones.js"></script>
 </head>
 <body>
 <header style="position: relative;">
     <!-- Botón de volver arriba a la izquierda -->
     <a href="panel.php" class="btn-volver" style="position:absolute; left:0; top:0; margin:10px;">&#8592; Volver</a>
-    
     <h1 style="text-align:center;">Historial de Mesas</h1>
 </header>
 <main>
-    <form method="get" class="form-filtros">
+    <form method="get" class="form-filtros" id="formFiltros">
         <!-- Fila 1 -->
         <div class="filtro-col">
             <label>Fecha inicio:</label>
-            <input type="date" name="fecha_desde" value="<?= htmlspecialchars($_GET['fecha_desde'] ?? '') ?>">
+            <input type="date" name="fecha_desde" value="<?= htmlspecialchars($_GET['fecha_desde'] ?? '') ?>" max="2100-12-31">
         </div>
         <div class="filtro-col">
             <label>Hora inicio:</label>
@@ -135,7 +133,7 @@ $ocupaciones = $stmt->fetchAll(PDO::FETCH_ASSOC);
         <!-- Fila 2 -->
         <div class="filtro-col">
             <label>Fecha final:</label>
-            <input type="date" name="fecha_hasta" value="<?= htmlspecialchars($_GET['fecha_hasta'] ?? '') ?>">
+            <input type="date" name="fecha_hasta" value="<?= htmlspecialchars($_GET['fecha_hasta'] ?? '') ?>" max="2100-12-31">
         </div>
         <div class="filtro-col">
             <label>Hora final:</label>
@@ -153,7 +151,7 @@ $ocupaciones = $stmt->fetchAll(PDO::FETCH_ASSOC);
         <!-- Botones invertidos ocupando todo el ancho -->
         <div class="filtro-botones" style="grid-column:1/-1; display:flex; gap:10px;">
             <button type="submit" name="borrar" style="flex:1;">Borrar filtros</button>
-            <button type="submit" name="buscar" style="flex:1;">Buscar</button>
+            <button type="submit" name="buscar" id="btnBuscar" style="flex:1;">Buscar</button>
         </div>
     </form>
 
