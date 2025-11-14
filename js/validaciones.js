@@ -7,7 +7,6 @@ input.onblur = validarInputNombre;
 input2.onblur = validarInputContra;
 
 
-
 // --> Validación de inputs
 
 function validarInputNombre(){
@@ -58,5 +57,3 @@ function validarInputContra(){
 
 
 }
-
-

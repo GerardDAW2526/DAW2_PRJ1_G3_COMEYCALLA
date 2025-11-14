@@ -25,13 +25,13 @@ CREATE TABLE IF NOT EXISTS tbl_salas (
     capacidad_total INT NOT NULL
 );
 
--- Tabla de mesas
+-- Tabla de mesas (sin descripción y con tipo_mesa obligatorio)
 CREATE TABLE IF NOT EXISTS tbl_mesas (
     id_mesa INT AUTO_INCREMENT PRIMARY KEY,
     id_sala INT NOT NULL,
     num_sillas INT NOT NULL,
     estado ENUM('libre','ocupada') DEFAULT 'libre',
-    descripcion VARCHAR(255)
+    tipo_mesa ENUM('cuadrada','rectangular','redonda','especial') NOT NULL
 );
 
 -- Tabla de ocupaciones (histórico)
@@ -47,17 +47,14 @@ CREATE TABLE IF NOT EXISTS tbl_ocupaciones (
 -- RELACIONES (FOREIGN KEYS)
 -- ======================================================
 
--- Relación entre mesas y salas
 ALTER TABLE tbl_mesas
     ADD CONSTRAINT fk_mesas_salas
     FOREIGN KEY (id_sala) REFERENCES tbl_salas(id_sala);
 
--- Relación entre ocupaciones y mesas
 ALTER TABLE tbl_ocupaciones
     ADD CONSTRAINT fk_ocupaciones_mesas
     FOREIGN KEY (id_mesa) REFERENCES tbl_mesas(id_mesa);
 
--- Relación entre ocupaciones y usuarios (camareros)
 ALTER TABLE tbl_ocupaciones
     ADD CONSTRAINT fk_ocupaciones_usuarios
     FOREIGN KEY (id_usuario) REFERENCES tbl_usuarios(id_usuario);
@@ -66,11 +63,11 @@ ALTER TABLE tbl_ocupaciones
 -- DATOS DE EJEMPLO
 -- ======================================================
 
--- Usuarios (camareros)
+-- Usuarios (contraseña: 123456 hasheada con bcrypt)
 INSERT INTO tbl_usuarios (username, nombre_completo, password) VALUES
-('jgomez', 'Juan Gómez', '1234'),
-('mlopez', 'María López', '1234'),
-('rcano', 'Raúl Cano', '1234');
+('jgomez', 'Juan Gómez', '$2y$10$Qq5BRiZCqjTZfgA4P74w5OYvwbUgqAw5pWNoVdD4K5ZxMGFj9Lfzi'),
+('mlopez', 'María López', '$2y$10$Qq5BRiZCqjTZfgA4P74w5OYvwbUgqAw5pWNoVdD4K5ZxMGFj9Lfzi'),
+('rcano', 'Raúl Cano', '$2y$10$Qq5BRiZCqjTZfgA4P74w5OYvwbUgqAw5pWNoVdD4K5ZxMGFj9Lfzi');
 
 -- Salas
 INSERT INTO tbl_salas (nombre_sala, tipo, capacidad_total) VALUES
@@ -84,22 +81,110 @@ INSERT INTO tbl_salas (nombre_sala, tipo, capacidad_total) VALUES
 ('Sala Privada 3', 'privada', 6),
 ('Sala Privada 4', 'privada', 12);
 
--- Mesas (ejemplo: 2 mesas por cada sala)
-INSERT INTO tbl_mesas (id_sala, num_sillas, estado, descripcion) VALUES
-(1, 4, 'libre', 'Mesa junto a la entrada'),
-(1, 4, 'ocupada', 'Mesa en la esquina'),
-(2, 2, 'libre', 'Mesa con sombra'),
-(2, 4, 'libre', 'Mesa con vistas'),
-(3, 4, 'libre', 'Mesa central'),
-(3, 2, 'ocupada', 'Mesa lateral'),
-(4, 6, 'ocupada', 'Mesa familiar'),
-(4, 4, 'libre', 'Mesa de dos parejas'),
-(5, 4, 'libre', 'Mesa interior'),
-(5, 4, 'ocupada', 'Mesa cercana a cocina'),
-(6, 8, 'libre', 'Privada para grupos'),
-(7, 10, 'libre', 'Privada con terraza'),
-(8, 6, 'ocupada', 'Pequeña sala privada'),
-(9, 12, 'libre', 'Gran sala privada');
+-- Mesas (2 por sala con tipo_mesa añadido)
+INSERT INTO tbl_mesas (id_sala, num_sillas, estado, tipo_mesa) VALUES
+-- (1, 4, 'libre', 'cuadrada'),
+
+(1, 4, 'libre', 'rectangular'),
+(1, 4, 'libre', 'rectangular'),
+(1, 4, 'libre', 'rectangular'),
+(1, 4, 'libre', 'rectangular'),
+(1, 4, 'libre', 'rectangular'),
+(1, 4, 'libre', 'rectangular'),
+(1, 4, 'libre', 'rectangular'),
+(1, 4, 'libre', 'rectangular'),
+(1, 2, 'libre', 'cuadrada'),
+(1, 2, 'libre', 'cuadrada'),
+(1, 2, 'libre', 'cuadrada'),
+(1, 2, 'libre', 'cuadrada'),
+(1, 2, 'libre', 'cuadrada'),
+(1, 2, 'libre', 'cuadrada'),
+(1, 2, 'libre', 'cuadrada'),
+(1, 8, 'libre', 'redonda'),
+(1, 8, 'libre', 'redonda'),
+
+(2, 4, 'libre', 'rectangular'),
+(2, 4, 'libre', 'rectangular'),
+(2, 4, 'libre', 'rectangular'),
+(2, 4, 'libre', 'rectangular'),
+(2, 4, 'libre', 'rectangular'),
+(2, 4, 'libre', 'rectangular'),
+(2, 4, 'libre', 'rectangular'),
+(2, 4, 'libre', 'rectangular'),
+(2, 2, 'libre', 'cuadrada'),
+(2, 2, 'libre', 'cuadrada'),
+(2, 2, 'libre', 'cuadrada'),
+(2, 2, 'libre', 'cuadrada'),
+(2, 2, 'libre', 'cuadrada'),
+(2, 2, 'libre', 'cuadrada'),
+(2, 2, 'libre', 'cuadrada'),
+(2, 8, 'libre', 'redonda'),
+(2, 8, 'libre', 'redonda'),
+
+(3, 22, 'libre', 'redonda'),
+
+(4, 22, 'libre', 'especial'),
+
+(5, 22, 'libre', 'especial'),
+(5, 22, 'libre', 'especial'),
+
+(6, 4, 'libre', 'rectangular'),
+(6, 4, 'libre', 'rectangular'),
+(6, 4, 'libre', 'rectangular'),
+(6, 4, 'libre', 'rectangular'),
+(6, 4, 'libre', 'rectangular'),
+(6, 4, 'libre', 'rectangular'),
+(6, 4, 'libre', 'rectangular'),
+(6, 4, 'libre', 'rectangular'),
+(6, 2, 'libre', 'cuadrada'),
+(6, 2, 'libre', 'cuadrada'),
+(6, 2, 'libre', 'cuadrada'),
+(6, 2, 'libre', 'cuadrada'),
+(6, 2, 'libre', 'cuadrada'),
+(6, 2, 'libre', 'cuadrada'),
+(6, 2, 'libre', 'cuadrada'),
+(6, 8, 'libre', 'redonda'),
+(6, 8, 'libre', 'redonda'),
+
+(7, 4, 'libre', 'rectangular'),
+(7, 4, 'libre', 'rectangular'),
+(7, 4, 'libre', 'rectangular'),
+(7, 4, 'libre', 'rectangular'),
+(7, 4, 'libre', 'rectangular'),
+(7, 4, 'libre', 'rectangular'),
+(7, 4, 'libre', 'rectangular'),
+(7, 4, 'libre', 'rectangular'),
+(7, 2, 'libre', 'cuadrada'),
+(7, 2, 'libre', 'cuadrada'),
+(7, 2, 'libre', 'cuadrada'),
+(7, 2, 'libre', 'cuadrada'),
+(7, 2, 'libre', 'cuadrada'),
+(7, 2, 'libre', 'cuadrada'),
+(7, 2, 'libre', 'cuadrada'),
+(7, 8, 'libre', 'redonda'),
+(7, 8, 'libre', 'redonda'),
+
+(8, 4, 'libre', 'rectangular'),
+(8, 4, 'libre', 'rectangular'),
+(8, 4, 'libre', 'rectangular'),
+(8, 4, 'libre', 'rectangular'),
+(8, 4, 'libre', 'rectangular'),
+(8, 4, 'libre', 'rectangular'),
+(8, 4, 'libre', 'rectangular'),
+(8, 4, 'libre', 'rectangular'),
+(8, 2, 'libre', 'cuadrada'),
+(8, 2, 'libre', 'cuadrada'),
+(8, 2, 'libre', 'cuadrada'),
+(8, 2, 'libre', 'cuadrada'),
+(8, 2, 'libre', 'cuadrada'),
+(8, 2, 'libre', 'cuadrada'),
+(8, 2, 'libre', 'cuadrada'),
+(8, 8, 'libre', 'redonda'),
+(8, 8, 'libre', 'redonda');
+
+
+
+
 
 -- Ocupaciones de ejemplo
 INSERT INTO tbl_ocupaciones (id_mesa, id_usuario, fecha_ocupacion, fecha_liberacion) VALUES
@@ -108,4 +193,3 @@ INSERT INTO tbl_ocupaciones (id_mesa, id_usuario, fecha_ocupacion, fecha_liberac
 (7, 3, '2025-11-06 12:00:00', NULL),
 (10, 1, '2025-11-06 13:30:00', NULL),
 (13, 2, '2025-11-06 14:00:00', NULL);
-

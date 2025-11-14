@@ -22,6 +22,9 @@
     @gray: #EEEEEE;
     @gray-hover: #f6f6f6;
     @red: red;
+    @primary-color: #F3EAE1;
+    @secundary-color: #B1A999;
+    @third-color: #3E2F1C;
 
 
 ////////////// Fuentes (font-family)
@@ -39,10 +42,10 @@
     // Los vw es una unidad que representa al ancho del viewport (la pantalla), 1vw = 12px.
     // Es una unidad que se ajusta automáticamente, pero le aplicamos un mínimo y un máximo para tener más control de él.
 
-    @fs-small: clamp(12px, 1.5vw, 16px);
-    @fs-medium: clamp(16px, 2vw, 21px);
+    @fs-small: clamp(12px, 1vw, 16px);
+    @fs-medium: clamp(14px, 1.5vw, 21px);
     @fs-large: clamp(18px, 4vw, 28px);
-    @fs-large-extra: clamp(32px, 5vw, 41px);
+    @fs-large-extra: clamp(28px, 5vw, 41px);
 
 
 
@@ -54,6 +57,7 @@
 
         padding: 0;
         margin: 0;
+        background-color: @primary-color;
 
         // --> Este parámetro controla el ancho y alto del elemento.
         // Suma todos los píxeles reunidos y los junta, por ejemplo:

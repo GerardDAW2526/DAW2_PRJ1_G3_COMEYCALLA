@@ -19,7 +19,7 @@ if(!(isset($_SESSION['nombre_completo']))){
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sala 1</title> <!-- En la BBDD tendría el id 1 -->
+    <title>Terraza 2</title> <!-- En la BBDD tendría el id 7 -->
 
     <!-- BOOTSTRAP -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -34,23 +34,22 @@ if(!(isset($_SESSION['nombre_completo']))){
 <body>
     
     <div class="header">
-
         <!-- Imagen -->
         <img src="../media/Logo.png" alt="No se ha podido cargar la imagen">
 
         <!-- Título de la sala -->
-        <h1>Comedor 1</h1>
-
+        <h1>Sala Terraza 2</h1>
 
         <div>
 
-            <a href="./historial.php"><img src="" alt="No se ha podido cargar la imagen"></a>
+            <form action="historial.php" method="get">
+                <button type="submit" class="btn-buscar">&#128269;</button>
+            </form>
             <form action="./logout.php" method="post">
                 <button type="submit" class="btn-cerrar-sesion">Cerrar Sesión</button>
             </form>
 
         </div>
-
     </div>
 
 
@@ -68,7 +67,7 @@ if(!(isset($_SESSION['nombre_completo']))){
 
                         try {
 
-                            $sql = "SELECT * FROM tbl_mesas WHERE id_sala = 1 AND tipo_mesa = 'rectangular'";
+                            $sql = "SELECT * FROM tbl_mesas WHERE id_sala = 7 AND tipo_mesa = 'rectangular'";
                             $stmt = $conn->query($sql);
                             $resultados = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
@@ -122,7 +121,7 @@ if(!(isset($_SESSION['nombre_completo']))){
 
                         try {
 
-                            $sql2 = "SELECT * FROM tbl_mesas WHERE id_sala = 1 AND tipo_mesa = 'cuadrada'";
+                            $sql2 = "SELECT * FROM tbl_mesas WHERE id_sala = 7 AND tipo_mesa = 'cuadrada'";
                             $stmt2 = $conn->query($sql2);
                             $resultados2 = $stmt2->fetchAll(PDO::FETCH_ASSOC);
 
@@ -176,7 +175,7 @@ if(!(isset($_SESSION['nombre_completo']))){
 
                     try {
 
-                        $sql3 = "SELECT * FROM tbl_mesas WHERE id_sala = 1 AND tipo_mesa = 'redonda'";
+                        $sql3 = "SELECT * FROM tbl_mesas WHERE id_sala = 7 AND tipo_mesa = 'redonda'";
                         $stmt3 = $conn->query($sql3);
                         $resultados3 = $stmt3->fetchAll(PDO::FETCH_ASSOC);
 
@@ -236,6 +235,8 @@ if(!(isset($_SESSION['nombre_completo']))){
         <a href="./sala-terraza-3.php">Terraza 3</a>
 
     </div>
+
+
 
     <div class="footer-2" id="footer-2">
 
