@@ -91,7 +91,7 @@ if($_SERVER['REQUEST_METHOD'] === 'POST') {
     <?php endif; ?>
 
     <p class="link-login">
-        <a href="login.php">Volver al login</a>
+        <a href="./index.php">Volver al login</a>
     </p>
 </main>
 </body>
