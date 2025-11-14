@@ -53,6 +53,15 @@ if(!(isset($_SESSION['nombre_completo']))){
     </div>
 
 
+    <!-- Badge mostrado justo debajo del header, alineado a la derecha -->
+    <div class="ocupadas-container" aria-hidden="false">
+        <div class="ocupadas-badge" title="Mesas ocupadas en esta sala">
+            <?php echo htmlspecialchars($ocupadas_count, ENT_QUOTES, 'UTF-8'); ?>
+        </div>
+    </div>
+
+
+
     <div class="content">
 
             <div class="left">
