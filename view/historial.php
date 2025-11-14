@@ -236,7 +236,7 @@ $ocupaciones = $stmt->fetchAll(PDO::FETCH_ASSOC);
         Descargar PDF
     </button>
 </main>
-
+<br><br><br>
 <div class="footer">
 
     <a href="./sala.php">Comedor 1</a>
