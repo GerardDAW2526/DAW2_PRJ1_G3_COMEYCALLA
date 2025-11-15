@@ -84,7 +84,20 @@ header{
 .btn-volver:hover {
     background-color: #444;
 }
-
+.btn-pagina {
+    background: #e0e0e0;
+    border: none;
+    color: #333;
+    margin: 0 2px;
+    padding: 6px 12px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: bold;
+}
+.btn-pagina.activa {
+    background: #4caf50;
+    color: #fff;
+}
 /* =========================
    Titulares principales
    ========================= */

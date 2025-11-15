@@ -267,6 +267,41 @@ if(!(isset($_SESSION['nombre_completo']))){
     </div>
 
 
+    
+    <div class="contador-ocupadas">
+    <?php
+
+        $ocupadas_count = 0;
+
+        
+        foreach($resultados as $mesa){
+
+            if($mesa['estado'] == 'ocupada'){
+                $ocupadas_count++;
+            }
+
+        }
+        
+        foreach($resultados2 as $mesa){
+
+            if($mesa['estado'] == 'ocupada'){
+                $ocupadas_count++;
+            }
+
+        }
+        foreach($resultados3 as $mesa){
+
+            if($mesa['estado'] == 'ocupada'){
+                $ocupadas_count++;
+            }
+
+        }
+        echo $ocupadas_count;
+
+    ?>
+</div>
+
+
 
     <!-- SCRIPT -->
     <script src="../js/sweetalerts.js"></script>

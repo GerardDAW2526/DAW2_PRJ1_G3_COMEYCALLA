@@ -234,6 +234,8 @@ $ocupaciones = $stmt->fetchAll(PDO::FETCH_ASSOC);
         </svg>
         Descargar PDF
     </button>
+
+    <div id="paginacion" style="text-align:center; margin: 20px 0;"></div>
 </main>
 <br><br><br>
 <div class="footer">
@@ -306,6 +308,44 @@ document.getElementById('btnPDF').addEventListener('click', function () {
     });
 
     doc.save('historial_ocupaciones.pdf');
+});
+
+// Paginación simple para la tabla
+const filasPorPagina = 10; // Cambia este valor si quieres más/menos filas por página
+let paginaActual = 1;
+
+function mostrarPagina(pagina) {
+    const filas = document.querySelectorAll('.tabla-historial tbody tr');
+    const totalFilas = filas.length;
+    const totalPaginas = Math.ceil(totalFilas / filasPorPagina);
+
+    // Oculta todas las filas
+    filas.forEach(fila => fila.style.display = 'none');
+
+    // Muestra solo las filas de la página actual
+    const inicio = (pagina - 1) * filasPorPagina;
+    const fin = inicio + filasPorPagina;
+    for (let i = inicio; i < fin && i < totalFilas; i++) {
+        filas[i].style.display = '';
+    }
+
+    // Actualiza los botones de paginación
+    document.getElementById('paginacion').innerHTML = '';
+    for (let i = 1; i <= totalPaginas; i++) {
+        const btn = document.createElement('button');
+        btn.textContent = i;
+        btn.className = 'btn-pagina' + (i === pagina ? ' activa' : '');
+        btn.onclick = () => {
+            paginaActual = i;
+            mostrarPagina(i);
+        };
+        document.getElementById('paginacion').appendChild(btn);
+    }
+}
+
+// Inicializa la paginación al cargar
+document.addEventListener('DOMContentLoaded', function() {
+    mostrarPagina(paginaActual);
 });
 </script>
 
