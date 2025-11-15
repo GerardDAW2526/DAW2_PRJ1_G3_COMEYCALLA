@@ -112,6 +112,8 @@ $ocupaciones = $stmt->fetchAll(PDO::FETCH_ASSOC);
     <!-- LESS -->
     <link rel="stylesheet/less" type="text/css" href="../estilos/estilos_salas.less" />
     <script src="https://cdn.jsdelivr.net/npm/less"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.7.0/jspdf.plugin.autotable.min.js"></script>
 </head>
 <body>
 <div class="header">
@@ -226,8 +228,16 @@ $ocupaciones = $stmt->fetchAll(PDO::FETCH_ASSOC);
             <?php endif; ?>
         </tbody>
     </table>
-</main>
+        <button id="btnPDF" class="btn verde" style="margin: 20px auto 40px auto; display: block;">
+        <svg xmlns="http://www.w3.org/2000/svg" style="vertical-align: middle; margin-right: 8px;" width="20" height="20" fill="currentColor" viewBox="0 0 384 512">
+            <path d="M224 136V0H24C10.7 0 0 10.7 0 24V488c0 13.3 10.7 24 24 24H360c13.3 0 24-10.7 24-24V160H248c-13.2 0-24-10.8-24-24zm121.9 31.1L247 7c-2.2-2.2-5.2-7-7-7H240v128c0 8.8 7.2 16 16 16h128v-0.1c0-1.9-4.8-4.9-7-7zM192 416c-44.2 0-80-35.8-80-80 0-8.8 7.2-16 16-16s16 7.2 16 16c0 26.5 21.5 48 48 48s48-21.5 48-48c0-8.8 7.2-16 16-16s16 7.2 16 16c0 44.2-35.8 80-80 80z"/>
+        </svg>
+        Descargar PDF
+    </button>
 
+    <div id="paginacion" style="text-align:center; margin: 20px 0;"></div>
+</main>
+<br><br><br>
 <div class="footer">
 
     <a href="./sala.php">Comedor 1</a>
@@ -267,9 +277,77 @@ $ocupaciones = $stmt->fetchAll(PDO::FETCH_ASSOC);
     </div>
 
 </div>
+<script>
+document.getElementById('btnPDF').addEventListener('click', function () {
+    const { jsPDF } = window.jspdf;
+    var doc = new jsPDF();
 
+    // Título
+    doc.text("Historial de Ocupaciones", 14, 15);
 
+    // Extraer cabecera y filas de la tabla
+    var head = [];
+    document.querySelectorAll('.tabla-historial thead tr th').forEach(function(th){
+        head.push(th.innerText);
+    });
 
+    var body = [];
+    document.querySelectorAll('.tabla-historial tbody tr').forEach(function(tr){
+        var row = [];
+        tr.querySelectorAll('td').forEach(function(td){
+            row.push(td.innerText);
+        });
+        body.push(row);
+    });
+
+    // Generar la tabla en el PDF
+    doc.autoTable({
+        head: [head],
+        body: body,
+        startY: 20
+    });
+
+    doc.save('historial_ocupaciones.pdf');
+});
+
+// Paginación simple para la tabla
+const filasPorPagina = 10; // Cambia este valor si quieres más/menos filas por página
+let paginaActual = 1;
+
+function mostrarPagina(pagina) {
+    const filas = document.querySelectorAll('.tabla-historial tbody tr');
+    const totalFilas = filas.length;
+    const totalPaginas = Math.ceil(totalFilas / filasPorPagina);
+
+    // Oculta todas las filas
+    filas.forEach(fila => fila.style.display = 'none');
+
+    // Muestra solo las filas de la página actual
+    const inicio = (pagina - 1) * filasPorPagina;
+    const fin = inicio + filasPorPagina;
+    for (let i = inicio; i < fin && i < totalFilas; i++) {
+        filas[i].style.display = '';
+    }
+
+    // Actualiza los botones de paginación
+    document.getElementById('paginacion').innerHTML = '';
+    for (let i = 1; i <= totalPaginas; i++) {
+        const btn = document.createElement('button');
+        btn.textContent = i;
+        btn.className = 'btn-pagina' + (i === pagina ? ' activa' : '');
+        btn.onclick = () => {
+            paginaActual = i;
+            mostrarPagina(i);
+        };
+        document.getElementById('paginacion').appendChild(btn);
+    }
+}
+
+// Inicializa la paginación al cargar
+document.addEventListener('DOMContentLoaded', function() {
+    mostrarPagina(paginaActual);
+});
+</script>
 
 </body>
 </html>
