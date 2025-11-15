@@ -31,7 +31,7 @@ if(!(isset($_SESSION['nombre_completo']))){
     <!-- SWEETALERT2 -->
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
-<body>
+<body class="vip">
     
     <div class="header">
         <!-- Imagen -->

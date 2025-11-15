@@ -11,9 +11,18 @@
 //////////////////////////////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////////////////
 
-body{
-    // overflow: hidden;
+.comedor{
+    background-image: url(../media/suelo-de-parquet-de-madera.png);
 }
+.vip{
+    background-image: url(../media/back-vip.png);
+}
+.terraza{
+    background-image: url(../media/back-terraza.png);
+    background-size: 200px;
+}
+
+
 
 .header{
     height: 15vh;
@@ -100,7 +109,7 @@ body{
     gap: 20px;
     height: 70vh;
     position: relative;
-    background-color: @primary-color;
+    // background-color: @primary-color;
     @media(max-width: 738px){
         height: auto;
         grid-template-columns: repeat(1, minmax(0, 1fr));
@@ -144,6 +153,16 @@ body{
 
                 img{
                     transition: all 0.2s;
+                    width: 110px;
+
+                    @media(max-width: 768px){
+                        width: 90px;
+                    }
+
+                    @media(max-width: 738px){
+                        width: 110px;
+                    }
+
                 }
                 
                 >form{
@@ -180,11 +199,7 @@ body{
         .section-2{
             display: grid;
             grid-template-columns: repeat(7, minmax(0, 1fr));
-            padding-top: 40px;
-
-            @media(max-width: 1440px){
-                padding-top: 20px;
-            }
+            // padding-top: 20px;
 
             @media(max-width: 735px){
                 // height: auto;
@@ -201,6 +216,9 @@ body{
                 text-align: center;
 
                 @media(max-width: 1440px){
+                    padding: 0px;
+                }
+                @media(max-width: 425px){
                     padding: 10px;
                 }
 
@@ -213,6 +231,19 @@ body{
 
                 img{
                     transition: all 0.2s;
+                    width: 70px;
+
+                    @media(max-width: 1440px){
+                        width: 60px;
+                    }
+                    @media(max-width: 811px){
+                        width: 50px;
+                    }
+                    @media(max-width: 738px){
+                        width: 80px;
+                    }
+
+    
                 }
                 
                 >form{

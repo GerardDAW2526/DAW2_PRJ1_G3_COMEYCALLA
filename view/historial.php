@@ -228,8 +228,7 @@ $ocupaciones = $stmt->fetchAll(PDO::FETCH_ASSOC);
             <?php endif; ?>
         </tbody>
     </table>
-
-    <button id="btnPDF" class="btn verde" style="margin: 20px auto 40px auto; display: block;">
+        <button id="btnPDF" class="btn verde" style="margin: 20px auto 40px auto; display: block;">
         <svg xmlns="http://www.w3.org/2000/svg" style="vertical-align: middle; margin-right: 8px;" width="20" height="20" fill="currentColor" viewBox="0 0 384 512">
             <path d="M224 136V0H24C10.7 0 0 10.7 0 24V488c0 13.3 10.7 24 24 24H360c13.3 0 24-10.7 24-24V160H248c-13.2 0-24-10.8-24-24zm121.9 31.1L247 7c-2.2-2.2-5.2-7-7-7H240v128c0 8.8 7.2 16 16 16h128v-0.1c0-1.9-4.8-4.9-7-7zM192 416c-44.2 0-80-35.8-80-80 0-8.8 7.2-16 16-16s16 7.2 16 16c0 26.5 21.5 48 48 48s48-21.5 48-48c0-8.8 7.2-16 16-16s16 7.2 16 16c0 44.2-35.8 80-80 80z"/>
         </svg>
@@ -276,7 +275,6 @@ $ocupaciones = $stmt->fetchAll(PDO::FETCH_ASSOC);
     </div>
 
 </div>
-
 <script>
 document.getElementById('btnPDF').addEventListener('click', function () {
     const { jsPDF } = window.jspdf;

@@ -42,7 +42,7 @@ if($_SERVER['REQUEST_METHOD'] === 'POST') {
             $insert->bindParam(':p', $hash);
 
             if($insert->execute()) {
-                $success = "Usuario registrado correctamente. <a href='./view/principal.php'>Ir al login</a>";
+                $success = "Usuario registrado correctamente. <a href='login.php'>Ir al login</a>";
             } else {
                 $error = "Error al registrar usuario";
             }
