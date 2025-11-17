@@ -15,7 +15,7 @@ CREATE TABLE IF NOT EXISTS tbl_usuarios (
     username VARCHAR(50) NOT NULL UNIQUE,
     nombre_completo VARCHAR(100) NOT NULL,
     password VARCHAR(255) NOT NULL
-);
+)ENGINE=InnoDB;
 
 -- Tabla de salas (terrazas, comedores, privadas)
 CREATE TABLE IF NOT EXISTS tbl_salas (
@@ -23,7 +23,7 @@ CREATE TABLE IF NOT EXISTS tbl_salas (
     nombre_sala VARCHAR(50) NOT NULL,
     tipo ENUM('terraza', 'comedor', 'privada') NOT NULL,
     capacidad_total INT NOT NULL
-);
+)ENGINE=InnoDB;
 
 -- Tabla de mesas (sin descripción y con tipo_mesa obligatorio)
 CREATE TABLE IF NOT EXISTS tbl_mesas (
@@ -32,7 +32,7 @@ CREATE TABLE IF NOT EXISTS tbl_mesas (
     num_sillas INT NOT NULL,
     estado ENUM('libre','ocupada') DEFAULT 'libre',
     tipo_mesa ENUM('cuadrada','rectangular','redonda','especial') NOT NULL
-);
+)ENGINE=InnoDB;
 
 -- Tabla de ocupaciones (histórico)
 CREATE TABLE IF NOT EXISTS tbl_ocupaciones (
@@ -41,7 +41,7 @@ CREATE TABLE IF NOT EXISTS tbl_ocupaciones (
     id_usuario INT NOT NULL,
     fecha_ocupacion DATETIME DEFAULT CURRENT_TIMESTAMP,
     fecha_liberacion DATETIME NULL
-);
+)ENGINE=InnoDB;
 
 -- ======================================================
 -- RELACIONES (FOREIGN KEYS)
@@ -71,11 +71,11 @@ INSERT INTO tbl_usuarios (username, nombre_completo, password) VALUES
 
 -- Salas
 INSERT INTO tbl_salas (nombre_sala, tipo, capacidad_total) VALUES
+('Comedor 1', 'comedor', 40),
+('Comedor 2', 'comedor', 36),
 ('Terraza 1', 'terraza', 24),
 ('Terraza 2', 'terraza', 20),
 ('Terraza 3', 'terraza', 16),
-('Comedor 1', 'comedor', 40),
-('Comedor 2', 'comedor', 36),
 ('Sala Privada 1', 'privada', 8),
 ('Sala Privada 2', 'privada', 10),
 ('Sala Privada 3', 'privada', 6),

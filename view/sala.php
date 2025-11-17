@@ -269,37 +269,37 @@ if(!(isset($_SESSION['nombre_completo']))){
 
     
     <div class="contador-ocupadas">
-    <?php
+        <?php
 
-        $ocupadas_count = 0;
+            $ocupadas_count = 0;
 
-        
-        foreach($resultados as $mesa){
+            
+            foreach($resultados as $mesa){
 
-            if($mesa['estado'] == 'ocupada'){
-                $ocupadas_count++;
+                if($mesa['estado'] == 'ocupada'){
+                    $ocupadas_count++;
+                }
+
             }
+            
+            foreach($resultados2 as $mesa){
 
-        }
-        
-        foreach($resultados2 as $mesa){
+                if($mesa['estado'] == 'ocupada'){
+                    $ocupadas_count++;
+                }
 
-            if($mesa['estado'] == 'ocupada'){
-                $ocupadas_count++;
             }
+            foreach($resultados3 as $mesa){
 
-        }
-        foreach($resultados3 as $mesa){
+                if($mesa['estado'] == 'ocupada'){
+                    $ocupadas_count++;
+                }
 
-            if($mesa['estado'] == 'ocupada'){
-                $ocupadas_count++;
             }
+            echo $ocupadas_count;
 
-        }
-        echo $ocupadas_count;
-
-    ?>
-</div>
+        ?>
+    </div>
 
 
 

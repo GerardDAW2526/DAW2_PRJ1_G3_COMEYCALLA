@@ -6,6 +6,7 @@ if (!isset($_SESSION['id_usuario'])) {
 }
 
 require_once './../conexion/conexion.php';
+require_once './validaciones_historial.php';
 
 // Obtener todas las salas para el select
 $stmt_salas = $conn->query("SELECT id_sala, nombre_sala FROM tbl_salas ORDER BY id_sala");
@@ -122,7 +123,7 @@ $ocupaciones = $stmt->fetchAll(PDO::FETCH_ASSOC);
         <img src="../media/Logo.png" alt="No se ha podido cargar la imagen">
 
         <!-- Título de la sala -->
-        <h1>Comedor 1</h1>
+        <h1>Historial</h1>
 
 
         <div>
@@ -139,7 +140,7 @@ $ocupaciones = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
 
 
-    <form method="get" class="form-filtros" id="formFiltros">
+    <form method="get" action="" class="form-filtros" id="formFiltros">
         <!-- Fila 1 -->
         <div class="filtro-col">
             <label>Fecha inicio:</label>
